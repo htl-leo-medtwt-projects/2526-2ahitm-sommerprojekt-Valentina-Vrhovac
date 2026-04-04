@@ -1,6 +1,207 @@
-body{
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background-color: #FFFAEF;
+/* ============================================
+   BASE
+   ============================================ */
+body {
+  margin: 0;
+  background: #FFFAEF;
+  font-family: 'Georgia', serif;
+  font-size: 16px;
+}
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+.page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  position: relative;
+  width: 62.5rem;   
+  height: 43rem; 
+}
+
+.cafe {
+  position: absolute;
+  left: -17.5rem;   
+  bottom: 1.5rem;
+  width: 62.5rem;
+}
+
+.title {
+  position: absolute;
+  top: 2.5rem;      
+  left: 28rem;  
+  width: 43.75rem; 
+}
+
+.open-btn {
+  position: absolute;
+  top: 25rem;  
+  right: 5.5rem;
+  background: #E8C4B8;
+  border: none;
+  padding: 0.9375rem 1.875rem;
+  border-radius: 0.9375rem;
+  font-size: 1.125rem;
+  cursor: pointer;
+  box-shadow: 0 0.375rem 0.9375rem rgba(0, 0, 0, 0.1);
+}
+
+.open-btn:hover {
+  transform: scale(1.05);
+  transition: 0.2s;
+}
+
+.menu {
+  position: absolute;
+  top: 27rem;   
+  right: 7.3rem;    
+  width: 10rem;
+}
+
+/* ============================================
+   STORY SECTION
+   ============================================ */
+.story {
+  position: relative;
+  width: 100%;
+  max-width: 62.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6.25rem;     
+  margin: 8.75rem auto;
+}
+
+.story.left {
+  flex-direction: row;
+}
+
+.story.right {
+  flex-direction: row-reverse;
+}
+
+.story p {
+  z-index: 0;
+  width: 25rem;
+  font-size: 1.5rem;
+  color: #6B705C;
+  line-height: 1.7;
+  letter-spacing: 0.02rem;
+}
+
+.img-box {
+  z-index: 0;
+  position: relative;
+  background-color: #EED3B5;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.625rem 1.5625rem rgba(0,0,0,0.08);
+}
+
+.story-img {
+  width: 24rem;
+  border-radius: 1.25rem;
+}
+
+/* ============================================
+   DECORATION
+   ============================================ */
+#tapeOne {
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  width: 7rem;
+  transform: rotate(-35deg);
+}
+
+#flower {
+  z-index: 1;
+  position: absolute;
+  bottom: -3rem;
+  left: 33rem;
+  width: 16rem;
+}
+
+#tapeTwo {
+  z-index: 1;
+  position: absolute;
+  top: -1rem;
+  right: -1.5rem;
+  width: 8rem;
+  transform: rotate(38deg);
+}
+
+#basket {
+  z-index: 1;
+  position: absolute;
+  bottom: -1.5rem;
+  right: 56rem;
+  width: 10rem;
+}
+
+#leaf {
+  z-index: 1;
+  position: absolute;
+  top: -2rem;
+  left: 22rem;
+  width: 8rem;
+}
+
+#tapeThree {
+  z-index: 1;
+  position: absolute;
+  top: -1rem;
+  right: -1.5rem;
+  width: 8rem;
+  transform: rotate(38deg);
+}
+
+#cloud {
+  z-index: -1;
+  position: absolute;
+  top: 2rem;
+  left: -10rem;
+  width: 35rem;
+}
+
+#butterfly {
+  z-index: -1;
+  position: absolute;
+  top: 2rem;
+  right: 20rem;
+  width: 12rem;
+  transform: rotate(15deg);
+}
+
+#strawberrys {
+  z-index: -1;
+  position: absolute;
+  top: 8.5rem;
+  right: -4rem;
+  width: 16rem;
+  transform: rotate(10deg);
+}
+
+#stars{
+  z-index: -1;
+  position: absolute;
+  top: 5rem;
+  left: 55rem;
+  width: 10rem;
+}
+
+#cloud-between {
+  z-index: 2;
+  position: absolute;
+  top: 73rem;
+  left: -3rem;
+  width: 37rem;
 }
