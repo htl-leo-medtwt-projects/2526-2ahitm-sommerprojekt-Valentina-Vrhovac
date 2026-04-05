@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Strawberry Garden Café</title>
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="icon" type="image/png" href="image/basket.png">
+    <link rel="stylesheet" href="style.css">
     <script src="script/ui-helpers.js" defer></script>
     <script src="script/menu-book.js" defer></script>
+    <script src="script/sliders.js" defer></script>
     <script src="script/main.js" defer></script>
 </head>
 
@@ -15,86 +15,88 @@
     <div class="page">
 
         <div class="hero">
-            <img src="image/coffeehouse.png" class="cafe">
-            <img src="image/title.png" class="title">
-            <button class="open-btn">Open Coffee Shop</button>
-            <img src="image/menu-btn.png" class="menu">
+            <img src="images/coffeehouse.png" class="cafe">
+            <img src="images/title.png" class="title">
+            <button class="open-btn" id="open-cafe-btn">Open Coffee Shop</button>
+            <img src="images/menu-btn.png" class="menu">
         </div>
 
         <div class="story right">
-            <img src="image/sterne.png" id="stars">
+            <img src="images/sterne.png" id="stars">
             <p>Long before the café existed,<br>there was only a quiet garden,<br>full of strawberries and flowers.</p>
             <div class="img-box">
-                <img src="image/story1.png" class="story-img">
-                <img src="image/sticker.png" id="tapeOne">
+                <img src="images/story1.png" class="story-img">
+                <img src="images/sticker.png" id="tapeOne">
             </div>
         </div>
 
-        <img src="image/schleier.png" id="cloud-between">
+        <img src="images/schleier.png" id="cloud-between">
 
         <div class="story left">
-            <img src="image/sticker2.png" id="tapeTwo">
-            <img src="image/flowers.png" id="flower">
+            <img src="images/sticker2.png" id="tapeTwo">
+            <img src="images/flowers.png" id="flower">
             <p>One day, a small idea appeared:<br>what if this garden became a place<br>for tea, cake and warm company?
             </p>
             <div class="img-box">
-                <img src="image/story2.png" class="story-img">
+                <img src="images/story2.png" class="story-img">
             </div>
         </div>
 
         <div class="story right">
             <p> With flowers, recipes and a lot of love, the little café slowly came to life.</p>
             <div class="img-box">
-                <img src="image/story3.png" class="story-img">
+                <img src="images/story3.png" class="story-img">
             </div>
-            <img src="image/butterfly.png" id="butterfly">
-            <img src="image/strawberrys.png" id="strawberrys">
+            <img src="images/butterfly.png" id="butterfly">
+            <img src="images/strawberrys.png" id="strawberrys">
         </div>
 
         <div class="story left">
-            <img src="image/sticker2.png" id="tapeThree">
+            <img src="images/sticker2.png" id="tapeThree">
             <p>And so the Strawberry Garden Café was born.</p>
             <div class="img-box">
-                <img src="image/story4.png" class="story-img">
+                <img src="images/story4.png" class="story-img">
             </div>
-            <img src="image/wolke.png" id="cloud">
+            <img src="images/wolke.png" id="cloud">
         </div>
 
         <div class="story right">
-            <img src="image/leaf.png" id="leaf">
-            <img src="image/basket.png" id="basket">
+            <img src="images/leaf.png" id="leaf">
+            <img src="images/basket.png" id="basket">
             <p>Step inside and start your day<br> in the Strawberry Garden Café.</p>
             <div class="img-box">
-                <img src="image/story5.png" class="story-img">
+                <img src="images/story5.png" class="story-img">
             </div>
         </div>
 
         <div id="menu-screen" class="menu-container hidden">
+
             <div class="menu-bg"></div>
+
             <div class="menu-panel">
 
                 <div class="menu-top">
 
                     <div class="left-ui">
                         <div class="ui-btn">
-                            <img src="image/settings.png">
+                            <img src="images/settings.png">
                             <span>Settings</span>
                         </div>
 
                         <div class="ui-btn" id="home-btn">
-                            <img src="image/house.png">
+                            <img src="images/house.png">
                             <span>Home</span>
                         </div>
                     </div>
 
                     <div class="right-ui">
                         <div class="ui-badge">
-                            <img src="image/level.png">
+                            <img src="images/level.png">
                             <span>Level 2</span>
                         </div>
 
                         <div class="ui-badge">
-                            <img src="image/coin.png">
+                            <img src="images/coin.png">
                             <span>44.50</span>
                         </div>
                     </div>
@@ -102,12 +104,12 @@
                 </div>
 
                 <div class="book">
-                    <div class="page-conatiner">
-                        <img id="page-left" class="page-img" src="image/menu-page1.png">
+                    <div class="page-container">
+                        <img id="page-left" class="page-img" src="images/menu-page1.png">
                         <div class="lock-overlay lock-overlay-left"></div>
                     </div>
-                    <div class="page-conatiner">
-                        <img id="page-right" class="page-img" src="image/menu-page2.png">
+                    <div class="page-container">
+                        <img id="page-right" class="page-img" src="images/menu-page2.png">
                         <div class="lock-overlay lock-overlay-1"></div>
                         <div class="lock-overlay lock-overlay-2"></div>
                     </div>
@@ -115,33 +117,35 @@
 
                 <button class="arrow left">‹</button>
                 <button class="arrow right">›</button>
+
             </div>
+
         </div>
 
-        <div id="settings-screen" class="settings-conatiner hidden">
+        <div id="settings-screen" class="settings-container hidden">
             <div class="settings-bg"></div>
 
             <div class="settings-panel">
-                <img src="image/strawberryup.png" class="settings-deco top-left">
-                <img src="image/strawberrydown.png" class="settings-deco bottom-right">
+                <img src="images/strawberryup.png" class="settings-deco top-left">
+                <img src="images/strawberrydown.png" class="settings-deco bottom-right">
 
-                <h2>Caffé Options</h2>
+                <h2>Café Options</h2>
 
                 <div class="sliders-container">
                     <div class="slider-item">
-                        <img src="image/music.png" class="slider-icon" alt="Music">
+                        <img src="images/music.png" class="slider-icon" alt="Music">
                         <div class="slider-track">
                             <input type="range" min="0" max="100" value="0" class="slider music-slider">
-                            <img src="image/miniStrawberry.png" class="strawberry-drag music-strawberry"
+                            <img src="images/miniStrawberry.png" class="strawberry-drag music-strawberry"
                                 draggable="true">
                         </div>
                     </div>
 
-                    <div class="sldier-item">
-                        <img src="image/tune.png" class="slider-icon" alt="Sound">
+                    <div class="slider-item">
+                        <img src="images/tune.png" class="slider-icon" alt="Sound">
                         <div class="slider-track">
                             <input type="range" min="0" max="100" value="0" class="slider sound-slider">
-                            <img src="image/miniStrawberry.png" class="strawberry-drag sound-strawberry"
+                            <img src="images/miniStrawberry.png" class="strawberry-drag sound-strawberry"
                                 draggable="true">
                         </div>
                     </div>
@@ -153,7 +157,66 @@
                 </div>
             </div>
         </div>
+
+        <div id="loading-screen" class="loading-container hidden">
+            <div class="loading-bg"></div>
+
+            <div class="loading-panel">
+                <img src="images/strawberryup.png" class="loading-deco top-left">
+                <img src="images/strawberrydown.png" class="loading-deco bottom-right">
+
+                <h2>Strawberry Garden Café</h2>
+
+                <img src="images/mouse.png" class="loading-mice" alt="Mice">
+
+                <div class="loading-bar-container">
+                    <div class="loading-bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-screen" class="game-container hidden">
+            <div class="game-bg"></div>
+
+            <div class="game-panel">
+                <div class="game-top">
+                    <div class="left-ui">
+                        <div class="ui-btn">
+                            <img src="images/settings.png">
+                            <span>Settings</span>
+                        </div>
+
+                        <div class="ui-btn">
+                            <img src="images/house.png">
+                            <span>Home</span>
+                        </div>
+                    </div>
+
+                    <div class="right-ui">
+                        <div class="ui-badge">
+                            <img src="images/level.png">
+                            <span>Level 2</span>
+                        </div>
+
+                        <div class="ui-badge">
+                            <img src="images/coin.png">
+                            <span>44.50</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-content">
+                    <img src="images/cat.png" class="game-cat" alt="Cat">
+
+                    <div class="game-dialog">
+                        <div class="dialog-text">Hello! Could I have a Strawberry tea, please? 🍓</div>
+                        <button class="game-btn">Let's make it!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 </body>
 
 </html>

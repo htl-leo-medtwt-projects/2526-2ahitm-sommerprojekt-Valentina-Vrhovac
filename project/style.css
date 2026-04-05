@@ -1,350 +1,353 @@
-/* ============================================
-   BASE
-   ============================================ */
 body {
-    margin: 0;
-    background: #FFFAEF;
-    font-family: 'Georgia', serif;
-    font-size: 16px;
+  margin: 0;
+  background: #FFFAEF;
+  font-family: 'Georgia', serif;
+  font-size: 16px;
 }
 
 /* ============================================
    LAYOUT
    ============================================ */
 .page {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ============================================
    HERO SECTION
    ============================================ */
 .hero {
-    position: relative;
-    width: 62.5rem;
-    height: 43rem;
+  position: relative;
+  width: 62.5rem;
+  height: 43rem;
 }
 
 .cafe {
-    position: absolute;
-    left: -17.5rem;
-    bottom: 1.5rem;
-    width: 62.5rem;
+  position: absolute;
+  left: -17.5rem;
+  bottom: 1.5rem;
+  width: 62.5rem;
 }
 
 .title {
-    position: absolute;
-    top: 2.5rem;
-    left: 28rem;
-    width: 43.75rem;
+  position: absolute;
+  top: 2.5rem;
+  left: 28rem;
+  width: 43.75rem;
 }
 
 .open-btn {
-    position: absolute;
-    top: 25rem;
-    right: 5.5rem;
-    background: #E8C4B8;
-    border: none;
-    padding: 0.9375rem 1.875rem;
-    border-radius: 0.9375rem;
-    font-size: 1.125rem;
-    cursor: pointer;
-    box-shadow: 0 0.375rem 0.9375rem rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 25rem;
+  right: 5.5rem;
+  background: #E8C4B8;
+  border: none;
+  padding: 0.9375rem 1.875rem;
+  border-radius: 0.9375rem;
+  font-size: 1.125rem;
+  cursor: pointer;
+  box-shadow: 0 0.375rem 0.9375rem rgba(0, 0, 0, 0.1);
 }
 
 .open-btn:hover {
-    transform: scale(1.05);
-    transition: 0.2s;
+  transform: scale(1.05);
+  transition: 0.2s;
 }
 
 .menu {
-    position: absolute;
-    top: 27rem;
-    right: 7.3rem;
-    width: 10rem;
-    cursor: pointer;
+  position: absolute;
+  top: 27rem;
+  right: 7.3rem;
+  width: 10rem;
+  cursor: pointer;
 }
 
 /* ============================================
    STORY SECTION
    ============================================ */
 .story {
-    position: relative;
-    width: 100%;
-    max-width: 62.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 6.25rem;
-    margin: 8.75rem auto;
+  position: relative;
+  width: 100%;
+  max-width: 62.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6.25rem;
+  margin: 8.75rem auto;
 }
 
 .story.left {
-    flex-direction: row;
+  flex-direction: row;
 }
 
 .story.right {
-    flex-direction: row-reverse;
+  flex-direction: row-reverse;
 }
 
 .story p {
-    z-index: 0;
-    width: 25rem;
-    font-size: 1.5rem;
-    color: #6B705C;
-    line-height: 1.7;
-    letter-spacing: 0.02rem;
+  z-index: 0;
+  width: 25rem;
+  font-size: 1.5rem;
+  color: #6B705C;
+  line-height: 1.7;
+  letter-spacing: 0.02rem;
 }
 
 .img-box {
-    z-index: 0;
-    position: relative;
-    background-color: #EED3B5;
-    padding: 1.25rem;
-    border-radius: 1.25rem;
-    box-shadow: 0 0.625rem 1.5625rem rgba(0, 0, 0, 0.08);
+  z-index: 0;
+  position: relative;
+  background-color: #EED3B5;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.625rem 1.5625rem rgba(0,0,0,0.08);
 }
 
 .story-img {
-    width: 24rem;
-    border-radius: 1.25rem;
+  width: 24rem;
+  border-radius: 1.25rem;
 }
 
 /* ============================================
-   DECORATION
+   DECORATIVE ELEMENTS
    ============================================ */
 #tapeOne {
-    position: absolute;
-    top: -1rem;
-    left: -1rem;
-    width: 7rem;
-    transform: rotate(-35deg);
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  width: 7rem;
+  transform: rotate(-35deg);
 }
 
 #flower {
-    z-index: 1;
-    position: absolute;
-    bottom: -3rem;
-    left: 33rem;
-    width: 16rem;
+  z-index: 1;
+  position: absolute;
+  bottom: -3rem;
+  left: 33rem;
+  width: 16rem;
 }
 
 #tapeTwo {
-    z-index: 1;
-    position: absolute;
-    top: -1rem;
-    right: -1.5rem;
-    width: 8rem;
-    transform: rotate(38deg);
+  z-index: 1;
+  position: absolute;
+  top: -1rem;
+  right: -1.5rem;
+  width: 8rem;
+  transform: rotate(38deg);
 }
 
 #basket {
-    z-index: 1;
-    position: absolute;
-    bottom: -1.5rem;
-    right: 56rem;
-    width: 10rem;
+  z-index: 1;
+  position: absolute;
+  bottom: -1.5rem;
+  right: 56rem;
+  width: 10rem;
 }
 
 #leaf {
-    z-index: 1;
-    position: absolute;
-    top: -2rem;
-    left: 22rem;
-    width: 8rem;
+  z-index: 1;
+  position: absolute;
+  top: -2rem;
+  left: 22rem;
+  width: 8rem;
 }
 
 #tapeThree {
-    z-index: 1;
-    position: absolute;
-    top: -1rem;
-    right: -1.5rem;
-    width: 8rem;
-    transform: rotate(38deg);
+  z-index: 1;
+  position: absolute;
+  top: -1rem;
+  right: -1.5rem;
+  width: 8rem;
+  transform: rotate(38deg);
 }
 
 #cloud {
-    z-index: -1;
-    position: absolute;
-    top: 2rem;
-    left: -10rem;
-    width: 35rem;
+  z-index: -1;
+  position: absolute;
+  top: 2rem;
+  left: -10rem;
+  width: 35rem;
 }
 
 #butterfly {
-    z-index: -1;
-    position: absolute;
-    top: 2rem;
-    right: 20rem;
-    width: 12rem;
-    transform: rotate(15deg);
+  z-index: -1;
+  position: absolute;
+  top: 2rem;
+  right: 20rem;
+  width: 12rem;
+  transform: rotate(15deg);
 }
 
 #strawberrys {
-    z-index: -1;
-    position: absolute;
-    top: 8.5rem;
-    right: -4rem;
-    width: 16rem;
-    transform: rotate(10deg);
+  z-index: -1;
+  position: absolute;
+  top: 8.5rem;
+  right: -4rem;
+  width: 16rem;
+  transform: rotate(10deg);
 }
 
 #stars {
-    z-index: -1;
-    position: absolute;
-    top: 5rem;
-    left: 55rem;
-    width: 10rem;
+  z-index: -1;
+  position: absolute;
+  top: 5rem;
+  left: 55rem;
+  width: 10rem;
 }
 
 #cloud-between {
-    z-index: 2;
-    position: absolute;
-    top: 73rem;
-    left: -3rem;
-    width: 37rem;
+  z-index: 2;
+  position: absolute;
+  top: 73rem;
+  left: -3rem;
+  width: 37rem;
 }
 
 /* ============================================
    MENU OVERLAY
    ============================================ */
-
 .hidden {
-    display: none !important;
+  display: none !important;
 }
 
 #menu-screen {
-    position: fixed;
-    inset: 0;
-    background: #fffaeff5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 3;
+  position: fixed;
+  inset: 0;
+  background: #fffaeff5;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
 }
 
 /* ============================================
    BACKGROUND
    ============================================ */
-.menu-conatiner {
-    position: relative;
-    width: 100%;
-    height: 100%;
+
+.menu-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .menu-bg {
-    position: absolute;
-    inset: 0;
-    background: url("image/wood.png") center/cover;
-    filter: blur(1.5px);
-    z-index: 0;
+  position: absolute;
+  inset: 0;
+  background: url("images/wood.png") center/cover;
+  filter: blur(1.5px);
+  z-index: 0;
 }
 
 .menu-panel {
-    position: relative;
-    z-index: 2;
-    width: 65rem;
-    height: 38rem;
-    padding: 1.5rem;
-    background: #F8EFE6;
-    border-radius: 1rem;
-    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2;
+
+  width: 65rem;
+  height: 38rem;
+  padding: 1.5rem;
+
+  background: #F8EFE6;
+  border-radius: 1rem;
+
+  box-shadow: 0 1rem 3rem rgba(0,0,0,0.2);
 }
 
 /* ============================================
    TOP BAR
    ============================================ */
+
 .menu-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: -0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: -0.5rem;
 }
 
 .left-ui {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .ui-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: #FFFFFF;
-    padding: 0 1.5rem;
-    border-radius: 2.5rem;
-    height: 2rem;
-    font-size: 0.95rem;
-    color: #6B705C;
-    border: 5px solid #E6C6A3;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #FFFFFF;
+  padding: 0 1.5rem;
+  border-radius: 2.5rem;
+  height: 2rem;
+  font-size: 0.95rem;
+  color: #6B705C;
+  border: 5px solid #E6C6A3;
 }
 
 .ui-btn img {
-    width: 3.6rem;
-    margin-left: -2.4rem;
+  width: 3.6rem;
+  margin-left: -2.4rem;
 }
 
 .right-ui {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .ui-badge {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: #FFFFFF;
-    padding: 0 1.5rem;
-    border-radius: 2.5rem;
-    height: 2rem;
-    font-size: 0.95rem;
-    color: #6B705C;
-    border: 5px solid #E6C6A3;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #FFFFFF;
+  padding: 0 1.5rem;
+  border-radius: 2.5rem;
+  height: 2rem;
+  font-size: 0.95rem;
+  color: #6B705C;
+  border: 5px solid #E6C6A3;
 }
 
 .ui-badge img {
-    width: 4.8rem;
-    margin-left: -3rem;
+  width: 4.8rem;
+  margin-left: -3rem;
 }
 
 /* ============================================
-    BOOK
-    ============================================ */
-
+   BOOK
+   ============================================ */
 .book {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
-    margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  margin-top: 2rem;
 }
 
 .page-container {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .lock-overlay {
-    position: absolute;
-    bottom: 6.5rem;
-    left: 1.5rem;
-    width: 11rem;
-    height: 5.5rem;
-    background: rgba(243, 209, 209, 0.6);
-    border-radius: 0.6rem;
-    cursor: not-allowed;
-    background-image: url("image/locked.png");
-    background-repeat: no-repeat;
-    background-position: 0.5rem 0.5rem;
-    background-size: auto 2.5rem;
+  position: absolute;
+  bottom: 6.5rem;
+  left: 1.5rem;
+  width: 11rem;
+  height: 5.5rem;
+  background: rgba(243, 209, 209, 0.6);
+  border-radius: 0.6rem;
+  cursor: not-allowed;
+  background-image: url("images/locked.png");
+  background-size: auto 2.5rem;
+  background-repeat: no-repeat;
+  background-position: 0.5rem 0.5rem;
 }
 
-.page-img{
-    width: 20rem;
-    height: auto;
-    object-fit: cover;
+.page-img {
+  width: 20rem;
+  height: auto;
+  object-fit: cover;
 }
 
 /* ============================================
@@ -464,7 +467,7 @@ body {
   padding: 0;
 }
 
-/*CHAT GPT (wenkit slider)*/
+/*Google + ChatGPT hilfe (webkit, moz)*/
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -686,4 +689,91 @@ body {
   100% {
     width: 100%;
   }
+}
+
+/* ============================================
+   GAME SCREEN
+   ============================================ */
+.game-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.game-container.hidden {
+  display: none;
+}
+
+.game-bg {
+  position: absolute;
+  inset: 0;
+  background: #F6D2A9 url("images/coffeeIn.png") center/contain no-repeat;
+  z-index: 1;
+}
+
+.game-panel {
+  position: relative;
+  padding: 1.5rem;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rem;
+}
+
+.game-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.game-cat {
+  width: 10rem;
+  height: 10rem;
+  object-fit: contain;
+}
+
+.game-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  max-width: 18rem;
+  background: #FFFAEF;
+}
+
+.dialog-text {
+  font-size: 1rem;
+  color: #6B705C;
+  line-height: 1.5;
+}
+
+.game-btn {
+  background: #E8C4B8;
+  color: #FFFAEF;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 0.8rem;
+  font-size: 1.1rem;
+  font-family: 'Georgia', serif;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.game-btn:hover {
+  background: #D4AF9E;
 }
