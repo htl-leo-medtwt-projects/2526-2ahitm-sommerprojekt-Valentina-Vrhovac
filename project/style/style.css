@@ -346,3 +346,344 @@ body {
     height: auto;
     object-fit: cover;
 }
+
+/* ============================================
+   SETTINGS SCREEN
+   ============================================ */
+
+.settings-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.settings-container.hidden {
+  display: none;
+}
+
+.settings-bg {
+  position: absolute;
+  inset: 0;
+  background: url("images/wood.png");
+  background-size: cover;
+  background-attachment: fixed;
+  filter: blur(1.5px);
+}
+
+.settings-panel {
+  position: relative;
+  background: #FFFAEF;
+  border-radius: 2rem;
+  padding: 3rem;
+  width: 50rem;
+  height: 20rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-deco {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  object-fit: contain;
+}
+
+.settings-deco.top-left {
+  top: -3rem;
+  left: -8rem;
+}
+
+.settings-deco.bottom-right {
+  bottom: -3rem;
+  right: -6rem;
+}
+
+.settings-panel h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin: 0 0 2rem 0;
+  border-bottom: 4px solid #F3D1D1;
+  padding-bottom: 1.5rem;
+}
+
+.sliders-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 35rem;
+}
+
+.slider-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.slider-icon {
+  position: absolute;
+  width: 3.5rem;
+  height: 3.5rem;
+  left: 0;
+  top: -1rem;
+  z-index: 3;
+}
+
+.slider-track {
+  position: relative;
+  flex: 1;
+  height: 1.5rem;
+  margin-left: 1rem;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1rem;
+  background: #F3D1D1;
+  border: 2px solid #F3D1D1;
+  border-radius: 0.5rem;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: none;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+}
+
+/*CHAT GPT (wenkit slider)*/
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0;
+  height: 0;
+  border: none;
+  cursor: grab;
+}
+
+.slider::-moz-range-thumb {
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: none;
+  cursor: grab;
+}
+
+.strawberry-drag {
+  position: absolute;
+  width: 10rem;
+  height: 10rem;
+  left: -5rem;
+  top: -4.5rem;
+  cursor: grab;
+  user-select: none;
+  z-index: 2;
+  object-fit: contain;
+}
+
+.strawberry-drag.dragging {
+  cursor: grabbing;
+  opacity: 0.9;
+}
+
+.slider-fruit {
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: grab;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.slider-fruit.dragging {
+  cursor: grabbing;
+  opacity: 0.8;
+}
+
+.settings-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.settings-btn {
+  background: #E8C4B8;
+  color: #FFFAEF;
+  border: 2px solid #E8C4B8;
+  padding: 0.8rem 2rem;
+  border-radius: 0.8rem;
+  font-size: 1.1rem;
+  font-family: 'Georgia', serif;
+  cursor: pointer;
+}
+
+.page-img:first-child {
+  border-right: 2px solid rgba(0,0,0,0.05);
+}
+
+/* ============================================
+   ARROWS
+   ============================================ */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: none;
+  background: #F3D1D1;
+  color: #FFFFFF;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+}
+
+.arrow.left {
+  left: 1rem;
+}
+
+.arrow.right {
+  right: 1rem;
+}
+
+.arrow.disabled {
+  background: #C2C2C2;
+  color: #FFFFFF;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.close-menu {
+  position: absolute;
+  top: -2.5rem;
+  right: -1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  background: #E8C4B8;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0.4rem 0.9rem rgba(0,0,0,0.15);
+}
+
+/* ============================================
+   LOADING SCREEN
+   ============================================ */
+.loading-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loading-container.hidden {
+  display: none;
+}
+
+.loading-bg {
+  position: absolute;
+  inset: 0;
+  background: url("images/wood.png");
+  background-size: cover;
+  background-attachment: fixed;
+  filter: blur(1.5px);
+}
+
+.loading-panel {
+  position: relative;
+  background: #FFFAEF;
+  border-radius: 2rem;
+  padding: 3rem;
+  width: 50rem;
+  height: 25rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.loading-panel h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #6B705C;
+  margin: 0;
+}
+
+.loading-deco {
+  position: absolute;
+  width: 22rem;
+  height: 22rem;
+  object-fit: contain;
+}
+
+.loading-deco.top-left {
+  top: -3rem;
+  left: -8rem;
+}
+
+.loading-deco.bottom-right {
+  bottom: -4rem;
+  right: -6rem;
+}
+
+.loading-mice {
+  width: 35rem;
+  height: 14rem;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.loading-mouse-left,
+.loading-mouse-right {
+  width: 8rem;
+  height: 8rem;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.loading-bar-container {
+  width: 100%;
+  max-width: 35rem;
+  height: 1.2rem;
+  background: #F6D2A9;
+  border: 1px solid #6B705C;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.loading-bar {
+  height: 100%;
+  background: #FFFFFF;
+  width: 0%;
+  animation: loadingAnimation 3s ease-out forwards;
+}
+
+@keyframes loadingAnimation {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}

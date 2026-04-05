@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style/style.css">
     <link rel="icon" type="image/png" href="image/basket.png">
     <script src="script/ui-helpers.js" defer></script>
+    <script src="script/menu-book.js" defer></script>
     <script src="script/main.js" defer></script>
 </head>
 
@@ -117,10 +118,41 @@
             </div>
         </div>
 
-    </div>
+        <div id="settings-screen" class="settings-conatiner hidden">
+            <div class="settings-bg"></div>
 
+            <div class="settings-panel">
+                <img src="image/strawberryup.png" class="settings-deco top-left">
+                <img src="image/strawberrydown.png" class="settings-deco bottom-right">
 
+                <h2>Caffé Options</h2>
 
+                <div class="sliders-container">
+                    <div class="slider-item">
+                        <img src="image/music.png" class="slider-icon" alt="Music">
+                        <div class="slider-track">
+                            <input type="range" min="0" max="100" value="0" class="slider music-slider">
+                            <img src="image/miniStrawberry.png" class="strawberry-drag music-strawberry"
+                                draggable="true">
+                        </div>
+                    </div>
+
+                    <div class="sldier-item">
+                        <img src="image/tune.png" class="slider-icon" alt="Sound">
+                        <div class="slider-track">
+                            <input type="range" min="0" max="100" value="0" class="slider sound-slider">
+                            <img src="image/miniStrawberry.png" class="strawberry-drag sound-strawberry"
+                                draggable="true">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-buttons">
+                    <button class="settings-btn home-settings">Home</button>
+                    <button class="settings-btn reset-btn">Reset</button>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
