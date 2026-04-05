@@ -6,6 +6,8 @@
     <title>Strawberry Garden Café</title>
     <link rel="stylesheet" href="style/style.css">
     <link rel="icon" type="image/png" href="image/basket.png">
+    <script src="script/ui-helpers.js" defer></script>
+    <script src="script/main.js" defer></script>
 </head>
 
 <body>
@@ -65,6 +67,59 @@
                 <img src="image/story5.png" class="story-img">
             </div>
         </div>
+
+        <div id="menu-screen" class="menu-container hidden">
+            <div class="menu-bg"></div>
+            <div class="menu-panel">
+
+                <div class="menu-top">
+
+                    <div class="left-ui">
+                        <div class="ui-btn">
+                            <img src="image/settings.png">
+                            <span>Settings</span>
+                        </div>
+
+                        <div class="ui-btn" id="home-btn">
+                            <img src="image/house.png">
+                            <span>Home</span>
+                        </div>
+                    </div>
+
+                    <div class="right-ui">
+                        <div class="ui-badge">
+                            <img src="image/level.png">
+                            <span>Level 2</span>
+                        </div>
+
+                        <div class="ui-badge">
+                            <img src="image/coin.png">
+                            <span>44.50</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="book">
+                    <div class="page-conatiner">
+                        <img id="page-left" class="page-img" src="image/menu-page1.png">
+                        <div class="lock-overlay lock-overlay-left"></div>
+                    </div>
+                    <div class="page-conatiner">
+                        <img id="page-right" class="page-img" src="image/menu-page2.png">
+                        <div class="lock-overlay lock-overlay-1"></div>
+                        <div class="lock-overlay lock-overlay-2"></div>
+                    </div>
+                </div>
+
+                <button class="arrow left">‹</button>
+                <button class="arrow right">›</button>
+            </div>
+        </div>
+
+    </div>
+
+
 
     </div>
 </body>
