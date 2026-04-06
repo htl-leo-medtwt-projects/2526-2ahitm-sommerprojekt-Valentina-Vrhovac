@@ -215,12 +215,10 @@ body {
   position: fixed;
   inset: 0;
   background: #fffaeff5;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
-  z-index: 9999;
+  z-index: 4;
 }
 
 /* ============================================
@@ -244,14 +242,11 @@ body {
 .menu-panel {
   position: relative;
   z-index: 2;
-
   width: 65rem;
   height: 38rem;
   padding: 1.5rem;
-
   background: #F8EFE6;
   border-radius: 1rem;
-
   box-shadow: 0 1rem 3rem rgba(0,0,0,0.2);
 }
 
@@ -263,13 +258,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  gap: 8rem;
   margin-bottom: -0.5rem;
 }
 
 .left-ui {
   display: flex;
   gap: 1rem;
+  margin-right: auto;
+  margin-left: 2rem;
 }
 
 .ui-btn {
@@ -293,6 +290,8 @@ body {
 .right-ui {
   display: flex;
   gap: 1rem;
+  margin-left: auto;
+  margin-right: 2rem;
 }
 
 .ui-badge {
@@ -311,6 +310,11 @@ body {
 .ui-badge img {
   width: 4.8rem;
   margin-left: -3rem;
+}
+
+.right-ui .ui-badge:first-child img{
+  width: 3rem;
+  margin-left: -1.8rem;
 }
 
 /* ============================================
@@ -448,6 +452,7 @@ body {
   margin-left: 1rem;
 }
 
+/*Google + ChatGPT hilfe (webkit, moz)*/
 .slider {
   position: absolute;
   top: 0;
@@ -467,7 +472,6 @@ body {
   padding: 0;
 }
 
-/*Google + ChatGPT hilfe (webkit, moz)*/
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -700,7 +704,7 @@ body {
   display: flex;
   align-items: stretch;
   justify-content: stretch;
-  z-index: 100;
+  z-index: 5;
   overflow: hidden;
 }
 
@@ -711,7 +715,7 @@ body {
 .game-bg {
   position: absolute;
   inset: 0;
-  background: #F6D2A9 url("images/coffeeIn.png") center/contain no-repeat;
+  background: #FFFAEF url("images/coffeeIn.png") center/contain no-repeat;
   z-index: 1;
 }
 
@@ -732,18 +736,28 @@ body {
   margin-bottom: 8rem;
 }
 
+.game-top .left-ui{
+  margin-left: 14.5rem;
+}
+
+.game-top .right-ui{
+  margin-right: 14.5rem;
+}
+
 .game-content {
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 2rem;
 }
 
 .game-cat {
-  width: 10rem;
-  height: 10rem;
+  width: 15rem;
+  height: 15rem;
   object-fit: contain;
+  margin-left: 42rem;
+  margin-top: -2rem;
 }
 
 .game-dialog {
@@ -752,8 +766,10 @@ body {
   gap: 1rem;
   padding: 1rem;
   border-radius: 1rem;
-  max-width: 18rem;
+  max-width: 14rem;
   background: #FFFAEF;
+  margin-top: -14rem;
+  margin-right: 10rem;
 }
 
 .dialog-text {

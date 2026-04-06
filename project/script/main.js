@@ -76,10 +76,10 @@ if (resetBtn) {
     let soundSlider = document.querySelector(".sound-slider");
     let musicStrawberry = document.querySelector(".music-strawberry");
     let soundStrawberry = document.querySelector(".sound-strawberry");
-    
+
     if (musicSlider) musicSlider.value = 50;
     if (soundSlider) soundSlider.value = 50;
-    
+
     updateAllSliders();
     if (musicStrawberry && musicSlider) updateStrawberryPosition(musicStrawberry, musicSlider);
     if (soundStrawberry && soundSlider) updateStrawberryPosition(soundStrawberry, soundSlider);
@@ -92,7 +92,7 @@ if (resetBtn) {
 if (openCafeBtn) {
   openCafeBtn.addEventListener("click", () => {
     show(loadingScreen);
-    
+
     setTimeout(() => {
       hide(loadingScreen);
       show(gameScreen);
@@ -117,3 +117,14 @@ if (gameHomeBtn) {
 initMenuBook();
 initSliders();
 initStrawberries();
+
+/* ============================================
+  AOS
+   ============================================ */
+   if(typeof AOS !== 'undefined'){
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: false
+    });
+   }
