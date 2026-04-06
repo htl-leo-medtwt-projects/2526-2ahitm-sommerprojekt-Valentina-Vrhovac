@@ -1,6 +1,8 @@
 /* ============================================
    SLIDER CONTROLS
    ============================================ */
+
+/*Teilweise Hilfe (Google + ChatGPT => Slider)*/
 let draggedStrawberry = null;
 
 function updateAllSliders() {
