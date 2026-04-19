@@ -1,0 +1,85 @@
+[
+    {
+        "id": 1,
+        "item": "Green Tea",
+        "text": "I would like a green tea, please. 🍵",
+        "earnings": 2.50
+    },
+    
+    {
+        "id": 2,
+        "item": "Strawberry Tea",
+        "text": "Can I get a strawberry tea? 🍓",
+        "earnings": 3.00
+    },
+    
+    {
+        "id": 3,
+        "item": "Matcha Latte",
+        "text": "I want a Matcha Latte. 🍃",
+        "earnings": 4.50
+    },
+    
+    {
+        "id": 4,
+        "item": "Strawberry Matcha Latte",
+        "text": "Can I get a strawberry Matcha Latte? 🍃🍓",
+        "earnings": 5.00
+    },
+
+    {
+        "id": 5,
+        "item": "Velvet Coffee",
+        "text": "I would like a Velvet Coffee, please. ☕",
+        "earnings": 4.00
+    },
+
+    {
+        "id": 6,
+        "item": "Strawberry Coffee",
+        "text": "Can I get a Strawberry Coffee? ☕🍓",
+        "earnings": 4.50
+    },
+
+     {
+        "id": 7,
+        "item": "Banana Cake Cup",
+        "text": "I want a Banana Cake Cup. 🍌",
+        "earnings": 4.50
+    },
+
+     {
+        "id": 8,
+        "item": "Strawberry Cake Cup",
+        "text": "One Strawberry Cake Cup, please! 🍓",
+        "earnings": 4.50
+    },
+
+     {
+        "id": 9,
+        "item": "Raspberry Cake Cup",
+        "text": "Can I get a Raspberry Cake Cup? 🫐",
+        "earnings": 4.50
+    },
+
+     {
+        "id": 10,
+        "item": "Berry Cream Toast",
+        "text": "Can I have a Berry Cream Toast? 🍞🫐",
+        "earnings": 4.00
+    },
+
+     {
+        "id": 11,
+        "item": "Banana Nut Toast",
+        "text": "One Banana Nut Toast, please! 🍌🥜",
+        "earnings": 4.00
+    },
+
+     {
+        "id": 12,
+        "item": "Apple Honey Toast",
+        "text": "I'd like an Apple Honey Toast, please. 🍎🍯",
+        "earnings": 4.00
+    }
+]
