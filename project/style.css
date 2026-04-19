@@ -463,7 +463,7 @@ h6 {
   position: relative;
   flex: 1;
   height: 1.5rem;
-  margin-left: 1rem;
+  margin-left: 4.5rem;
 }
 
 /*Google + ChatGPT hilfe (webkit, moz)*/
@@ -507,7 +507,7 @@ h6 {
   position: absolute;
   width: 10rem;
   height: 10rem;
-  left: -5rem;
+  left: 0;
   top: -4.5rem;
   cursor: grab;
   user-select: none;

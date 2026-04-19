@@ -36,6 +36,9 @@ function updateStrawberryPosition(strawberry, slider) {
   
   let position = (sliderValue / 100) * trackWidth;
   
+  let strawberryWidth = strawberry.offsetWidth || 24;
+  position = position - (strawberryWidth / 2);
+  
   strawberry.style.left = position + "px";
   
   updateSliderBackground(slider);
@@ -94,5 +97,12 @@ function initStrawberries() {
       draggedStrawberry.classList.remove("dragging");
       draggedStrawberry = null;
     }
+  });
+
+  window.addEventListener("resize", () => {
+    strawberries.forEach(strawberry => {
+      let slider = getSliderFromStrawberry(strawberry);
+      updateStrawberryPosition(strawberry, slider);
+    });
   });
 }
