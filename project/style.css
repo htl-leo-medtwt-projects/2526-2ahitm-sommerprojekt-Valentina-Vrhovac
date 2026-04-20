@@ -873,3 +873,388 @@ h6 {
 .game-btn:hover {
   background: #D4AF9E;
 }
+
+/* ============================================
+   TEA MAKING GAME - FULL OVERLAY
+   ============================================ */
+.tea-game-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  margin: 0;
+  background: url('images/wood2.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  border-radius: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.tea-game-overlay.hidden {
+  display: none;
+}
+
+.tea-overlay-content {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 3rem 4rem;
+  box-shadow: none;
+  width: 90%;
+  max-width: 950px;
+}
+
+.tea-corner-select {
+  text-align: center;
+}
+
+.tea-corner-select h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  color: #5D3E2E;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.tea-corner-select p {
+  font-size: 1.3rem;
+  color: #7A6B62;
+  margin: 0 0 2rem 0;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 500;
+}
+
+.tea-selection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  justify-items: center;
+  margin-top: 2rem;
+}
+
+.tea-option {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.tea-box-img {
+  width: 260px;
+  height: 320px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s;
+  filter: drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.2));
+}
+
+.tea-box-img:hover {
+  transform: scale(1.1);
+}
+
+.tea-select-btn {
+  background: #E8C4B8;
+  color: #FFFAEF;
+  border: 2px solid #D4AF9E;
+  padding: 1rem 3rem;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tea-select-btn:hover {
+  background: #D4AF9E;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.tea-steps {
+  display: flow-root;
+}
+
+.tea-steps .step {
+  display: none;
+}
+
+.tea-steps .step.hidden {
+  display: none;
+}
+
+.tea-steps .step:not(.hidden) {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 1rem;
+  border: 3px solid #E8D4CC;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.step h3 {
+  margin: 0;
+  color: #6B705C;
+  font-size: 1.3rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.tea-select {
+  padding: 0.8rem;
+  border: 2px solid #E6C6A3;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-family: 'Nunito', sans-serif;
+  background: #FFF;
+  color: #6B705C;
+  cursor: pointer;
+}
+
+.step-btn {
+  background: #E8C4B8;
+  color: #FFF;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.step-btn:hover {
+  background: #D4AF9E;
+}
+
+.step-btn.hidden {
+  display: none;
+}
+
+.tea-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.tea-box:hover {
+  transform: scale(1.05);
+}
+
+.box-img {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+}
+
+.tea-working-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 3rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+.tea-box-open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tea-bag-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  cursor: grab;
+}
+
+.tea-bag-img.dragging {
+  cursor: grabbing;
+  opacity: 0.7;
+}
+
+.tea-cup-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tea-cup {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+}
+
+.water-fill-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+.kettle-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+}
+
+.kettle-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: grab;
+}
+
+.kettle-img.filling {
+  cursor: grabbing;
+}
+
+.fill-progress {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  right: 15px;
+  height: 12px;
+  background: #F3D1D1;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.fill-bar {
+  height: 100%;
+  background: #E8C4B8;
+  width: 0%;
+  transition: width 0.1s;
+}
+
+.fill-instruction {
+  margin: 0;
+  color: #6B705C;
+  font-size: 0.95rem;
+}
+
+.timer-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.timer {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: conic-gradient(#E8C4B8 0deg, #E8C4B8 0deg, #F3D1D1 0deg);
+  border-radius: 50%;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.timer.filling {
+  --fill: 0%;
+}
+
+.timer-img {
+  display: none;
+}
+
+.timer-text {
+  position: absolute;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #6B705C;
+  font-family: 'Playfair Display', serif;
+}
+
+.tea-pour-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 3rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+.kettle-pour {
+  cursor: grab;
+  display: flex;
+  justify-content: center;
+}
+
+.kettle-pour.dragging {
+  cursor: grabbing;
+  opacity: 0.7;
+}
+
+.kettle-pour-img {
+  width: 240px;
+  height: 240px;
+  object-fit: contain;
+}
+
+.tea-cup-fill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 240px;
+  height: 240px;
+  background: transparent;
+}
+
+.cup-fill-img {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+}
+
+.tea-success-message {
+  padding: 1.5rem;
+  background: #E8C4B8;
+  color: #FFF;
+  border-radius: 0.8rem;
+  font-size: 1.3rem;
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  margin-top: 2rem;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
