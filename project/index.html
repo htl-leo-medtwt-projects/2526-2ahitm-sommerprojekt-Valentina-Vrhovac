@@ -15,6 +15,7 @@
     <script src="script/ui-helpers.js" defer></script>
     <script src="script/menu-book.js" defer></script>
     <script src="script/sliders.js" defer></script>
+    <script src="script/tea-game.js" defer></script>
     <script src="script/main.js" defer></script>
 </head>
 
@@ -215,9 +216,87 @@
                 <div class="game-content">
                     <img src="images/cat.png" class="game-cat" alt="Cat">
 
-                    <div class="game-dialog">
-                        <div class="dialog-text">Hello! Could I have a Strawberry tea, please? 🍓</div>
-                        <button class="game-btn">Let's make it!</button>
+                    <div class="game-dialog" id="order-dialog">
+                        <div class="dialog-text" id="order-text">Hello! Could I have a Strawberry tea, please? 🍓</div>
+                        <button class="game-btn" id="lets-make-it-btn">Let's make it!</button>
+                    </div>
+
+                    <div id="tea-making" class="tea-game-overlay hidden">
+                        <div class="tea-overlay-content">
+                            <div class="tea-corner-select" id="tea-selection-overlay">
+                                <h2>Tea Corner</h2>
+                                <p>Pick a tea to brew</p>
+                                <div class="tea-selection-grid">
+                                    <img src="images/greenTea.png" alt="Green Tea" class="tea-box-img">
+                                    <button class="game-btn tea-select-btn" data-tea="green">Select</button>
+                                </div>
+                                <div class="tea-option">
+                                    <img src="images/strawberryTea.png" alt="Strawberry Tea" class="tea-box-img">
+                                    <button class="game-btn tea-select-btn" data-tea="strawberry">Select</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tea-steps">
+                            <div class="step hidden" id="step-1">
+                                <h3>Step 1: Open Box</h3>
+                                <div class="tea-box" id="tea-box">
+                                    <img src="images/greenTea.png" alt="Tea Box" class="box-img" id="tea-box-img">
+                                    <p>Click on the box!</p>
+                                </div>
+                            </div>
+
+                            <div class="step hidden" id="step-2">
+                                <h3>Step 2: Tea Bag in Cup</h3>
+                                <div class="tea-working-area">
+                                    <div class="tea-box-open" id="tea-bag-source">
+                                        <img src="images/greenTeaBag.png" alt="Tea Bag" class="tea-bag-img"
+                                            id="tea-bag-image" draggable="true">
+                                    </div>
+                                    <div class="tea-cup-area">
+                                        <img src="images/mug.png" alt="Cup" class="tea-cup" id="tea-cup-drop">
+                                    </div>
+                                </div>
+                                <button class="step-btn next-btn hidden" id="step2-next">Next</button>
+                            </div>
+
+                            <div class="step hidden" id="step-3">
+                                <h3>Step 3: Fill Water</h3>
+                                <div class="water-fill-area">
+                                    <div class="kettle-container">
+                                        <img src="images/kettle.png" alt="Kettle" class="kettle-img" id="kettle-fill">
+                                        <div class="fill-progress">
+                                            <div class="fill-bar" id="kettle-fill-bar"></div>
+                                        </div>
+                                    </div>
+                                    <p class="fill-instruction">Hold down to fill!</p>
+                                </div>
+                                <button class="step-btn next-btn hidden" id="step3-next">Next</button>
+                            </div>
+
+                            <div class="step hidden" id="step-4">
+                                <div class="timer-area">
+                                    <div class="timer" id="boil-timer">
+                                        <img src="images/timer.png" alt="Timer" class="timer-img">
+                                        <span class="timer-text" id="timer-display">0:30</span>
+                                    </div>
+                                    <p>Wait until the water boils...</p>
+                                </div>
+                            </div>
+
+                            <div class="step hidden" id="step-5">
+                                <h3>Step 5: Fill the Cup</h3>
+                                <div class="tea-pour-area">
+                                    <div class="kettle-pour" id="kettle-pour" draggable="true">
+                                        <img src="images/kettle.png" alt="Kettle" class="kettle-pour-img">
+                                    </div>
+                                    <div class="tea-cup-fill" id="cup-fill-target">
+                                        <img src="images/mug.png" alt="Cup" class="cup-fill-img">
+                                    </div>
+                                </div>
+                                <button class="step-btn next-btn hidden" id="step5-next">Done!</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
