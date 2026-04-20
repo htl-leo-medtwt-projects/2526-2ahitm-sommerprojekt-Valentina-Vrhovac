@@ -787,6 +787,71 @@ h6 {
   margin-right: 10rem;
 }
 
+.game-dialog.tea-corner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  margin: 0;
+  background: rgba(210, 180, 140, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  border-radius: 0;
+}
+
+.tea-corner-content {
+  background: linear-gradient(to bottom, #D4A574 0%, #C99368 100%);
+  border: 8px solid #8B6F47;
+  border-radius: 2rem;
+  padding: 3rem;
+  text-align: center;
+  max-width: 800px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.tea-corner-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: #3D3D3D;
+  margin: 0 0 0.5rem 0;
+}
+
+.tea-corner-content p {
+  font-size: 1.3rem;
+  color: #5D5D5D;
+  margin: 0 0 2.5rem 0;
+}
+
+.tea-selection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  justify-items: center;
+}
+
+.tea-option {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.tea-box-img {
+  width: 200px;
+  height: 250px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.tea-box-img:hover {
+  transform: scale(1.05);
+}
+
 .dialog-text {
   font-size: 1rem;
   color: #6B705C;
