@@ -895,6 +895,7 @@ h6 {
   border-radius: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .tea-game-overlay.hidden {
@@ -909,6 +910,8 @@ h6 {
   box-shadow: none;
   width: 90%;
   max-width: 950px;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .tea-corner-select {
