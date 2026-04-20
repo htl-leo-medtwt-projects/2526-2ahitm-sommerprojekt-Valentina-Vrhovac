@@ -8,7 +8,7 @@ const settingsBtn = document.querySelector(".menu-panel .left-ui .ui-btn");
 
 const settingsScreen = document.getElementById("settings-screen");
 const settingsBg = document.querySelector(".settings-bg");
-const homeSettingsBtn = document.querySelector(".home-settings");
+const backSettingsBtn = document.querySelector(".back-settings");
 const resetBtn = document.querySelector(".reset-btn");
 
 const loadingScreen = document.getElementById("loading-screen");
@@ -17,6 +17,8 @@ const openCafeBtn = document.getElementById("open-cafe-btn");
 const gameScreen = document.getElementById("game-screen");
 const gameSettingsBtn = gameScreen.querySelector(".left-ui .ui-btn:first-child");
 const gameHomeBtn = gameScreen.querySelector(".left-ui .ui-btn:last-child");
+
+let previousScreen = null;
 
 
 /* ============================================
@@ -47,6 +49,7 @@ if (homeBtn) {
 if (settingsBtn) {
   settingsBtn.addEventListener("click", (event) => {
     event.stopPropagation();
+    previousScreen = "menu";
     hide(menuScreen);
     show(settingsScreen);
   });
@@ -64,9 +67,15 @@ if (settingsScreen) {
   });
 }
 
-if (homeSettingsBtn) {
-  homeSettingsBtn.addEventListener("click", () => {
+if (backSettingsBtn) {
+  backSettingsBtn.addEventListener("click", () => {
     hide(settingsScreen);
+    if (previousScreen === "game") {
+      show(gameScreen);
+    } else if (previousScreen === "menu") {
+      show(menuScreen);
+    }
+    previousScreen = null;
   });
 }
 
@@ -76,10 +85,10 @@ if (resetBtn) {
     let soundSlider = document.querySelector(".sound-slider");
     let musicStrawberry = document.querySelector(".music-strawberry");
     let soundStrawberry = document.querySelector(".sound-strawberry");
-
+    
     if (musicSlider) musicSlider.value = 50;
     if (soundSlider) soundSlider.value = 50;
-
+    
     updateAllSliders();
     if (musicStrawberry && musicSlider) updateStrawberryPosition(musicStrawberry, musicSlider);
     if (soundStrawberry && soundSlider) updateStrawberryPosition(soundStrawberry, soundSlider);
@@ -92,7 +101,7 @@ if (resetBtn) {
 if (openCafeBtn) {
   openCafeBtn.addEventListener("click", () => {
     show(loadingScreen);
-
+    
     setTimeout(() => {
       hide(loadingScreen);
       show(gameScreen);
@@ -103,6 +112,7 @@ if (openCafeBtn) {
 if (gameSettingsBtn) {
   gameSettingsBtn.addEventListener("click", (event) => {
     event.stopPropagation();
+    previousScreen = "game";
     hide(gameScreen);
     show(settingsScreen);
   });
@@ -119,12 +129,12 @@ initSliders();
 initStrawberries();
 
 /* ============================================
-  AOS
+   AOS
    ============================================ */
-   if(typeof AOS !== 'undefined'){
-    AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
-      once: false
-    });
-   }
+if (typeof AOS !== 'undefined') {
+  AOS.init({
+    duration: 1000,
+    easing: 'ease-in-out',
+    once: false
+  });
+}
