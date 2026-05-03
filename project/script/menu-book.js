@@ -50,14 +50,14 @@ function updateLocks() {
   if (lockOverlay2) lockOverlay2.style.display = "none";
   
   if (currentIndex === 0) {
-    setLockPosition(lockOverlay1, "6rem", "1.7rem", "10rem", "5.5rem", 3);
+    setLockPosition(lockOverlay1, "6rem", "1.7rem", "10rem", "5.5rem", 2);
     setLockPosition(lockOverlay2, "15.3rem", "11.3rem", "8rem", "5.5rem", 2);
   }
   
   if (currentIndex === 2) {
-    setLockPosition(lockOverlayLeft, "2.3rem", "1.5rem", "12rem", "9rem", 4);
-    setLockPosition(lockOverlay1, "2.8rem", "0.5rem", "19rem", "4rem", 7);
-    setLockPosition(lockOverlay2, "13.3rem", "0.5rem", "19rem", "3.5rem", 6);
+    setLockPosition(lockOverlayLeft, "2.3rem", "1.5rem", "12rem", "9rem", 3);
+    setLockPosition(lockOverlay1, "2.8rem", "0.5rem", "19rem", "4rem", 5);
+    setLockPosition(lockOverlay2, "13.3rem", "0.5rem", "19rem", "3.5rem", 4);
   }
 }
 
