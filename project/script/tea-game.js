@@ -1,3 +1,7 @@
+// ========================================
+// TEA GAME
+// ========================================
+
 const gameState = {
   currentStep: 0,
   selectedTea: null,
@@ -7,24 +11,141 @@ const gameState = {
 };
 
 const teaImages = {
-  green: { box: "images/greenTea.png", boxOpen: "images/greenTeaOpen.png", bag: "images/greenTeaBag.png", mug: "images/GreenTeaMug.png", fullMug: "images/FullGreenTeaMug.png" },
-  strawberry: { box: "images/strawberryTea.png", boxOpen: "images/strawberryTeaOpen.png", bag: "images/strawberryTeaBag.png", mug: "images/strawberryTeaMug.png", fullMug: "images/FullStrawberryTeaMug.png" }
+  green: {
+    box: "images/greenTea.png",
+    boxOpen: "images/greenTeaOpen.png",
+    bag: "images/greenTeaBag.png",
+    mug: "images/GreenTeaMug.png",
+    fullMug: "images/FullGreenTeaMug.png"
+  },
+  strawberry: {
+    box: "images/strawberryTea.png",
+    boxOpen: "images/strawberryTeaOpen.png",
+    bag: "images/strawberryTeaBag.png",
+    mug: "images/strawberryTeaMug.png",
+    fullMug: "images/FullStrawberryTeaMug.png"
+  }
 };
 
+// ========================================
+// HTML
+// ========================================
+
+function createTeaGameHTML() {
+  const gameContent = document.querySelector(".game-content");
+  if (!gameContent) {
+    return;
+  }
+
+  const teaMakingHTML = `
+    <div id="tea-making" class="tea-game-overlay">
+      <div class="tea-overlay-content">
+        <div class="tea-corner-select" id="tea-selection-overlay">
+          <h2>Tea Corner</h2>
+          <p>Pick a tea to brew</p>
+          <div class="tea-selection-grid">
+            <div class="tea-option">
+              <img src="images/greenTea.png" alt="Green Tea" class="tea-box-img">
+              <button class="game-btn tea-select-btn" data-tea="green" type="button">Select</button>
+            </div>
+            <div class="tea-option">
+              <img src="images/strawberryTea.png" alt="Strawberry Tea" class="tea-box-img">
+              <button class="game-btn tea-select-btn" data-tea="strawberry" type="button">Select</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tea-steps">
+          <div class="step hidden" id="step-1">
+            <h3>Step 1: Open Box</h3>
+            <div class="tea-box" id="tea-box">
+              <img src="images/greenTea.png" alt="Tea Box" class="box-img" id="tea-box-img">
+              <p>Click on the box!</p>
+            </div>
+          </div>
+
+          <div class="step hidden" id="step-2">
+            <h3>Step 2: Tea Bag in Cup</h3>
+            <div class="tea-working-area">
+              <div class="tea-box-open">
+                <img src="images/greenTeaBag.png" alt="Tea Bag" class="tea-bag-img" id="tea-bag-image" draggable="true">
+              </div>
+              <div class="tea-cup-area">
+                <img src="images/mug.png" alt="Cup" class="tea-cup" id="tea-cup-drop">
+              </div>
+            </div>
+          </div>
+
+          <div class="step hidden" id="step-3">
+            <h3>Step 3: Fill Water</h3>
+            <div class="water-fill-area">
+              <div class="kettle-container">
+                <img src="images/kettle.png" alt="Kettle" class="kettle-img" id="kettle-fill">
+                <div class="fill-progress">
+                  <div class="fill-bar" id="kettle-fill-bar"></div>
+                </div>
+              </div>
+              <p class="fill-instruction">Hold down to fill!</p>
+            </div>
+          </div>
+
+          <div class="step hidden" id="step-4">
+            <h3>Step 4: Water is Boiling!</h3>
+            <p style="margin-top: 0.3rem; margin-bottom: 0.8rem; font-size: 1rem; color: #6B705C; font-style: italic;">Stop after 5 sek</p>
+            <div class="timer-area">
+              <div class="timer" id="boil-timer">
+                <span class="timer-text" id="timer-display">0:10</span>
+              </div>
+              <p>Wait until the water boils...</p>
+              <button class="game-btn" id="stop-timer-btn" style="margin-top: 1rem;">Stop</button>
+            </div>
+          </div>
+
+          <div class="step hidden" id="step-5">
+            <h3>Step 5: Fill the Cup</h3>
+            <div class="tea-pour-area">
+              <div class="kettle-pour" id="kettle-pour" draggable="true">
+                <img src="images/kettle.png" alt="Kettle" class="kettle-pour-img">
+              </div>
+              <div class="tea-cup-fill" id="cup-fill-target">
+                <img src="images/mug.png" alt="Cup" class="cup-fill-img">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  gameContent.insertAdjacentHTML("beforeend", teaMakingHTML);
+}
+
 function showStep(stepNumber) {
-  document.querySelectorAll(".step").forEach(step => step.classList.add("hidden"));
-  let step = document.querySelector(`#step-${stepNumber}`);
+  document.querySelectorAll(".tea-steps .step").forEach(step => step.classList.add("hidden"));
+  const step = document.getElementById(`step-${stepNumber}`);
   if (step) {
+// ========================================
+// STEP MANAGEMENT
+// ========================================
+
     step.classList.remove("hidden");
   }
 }
 
 function updateTeaImages() {
-  let tea = gameState.selectedTea;
-  let images = teaImages[tea];
-  if (images) {
-    document.querySelector("#tea-box-img").src = images.box;
-    document.querySelector("#tea-bag-image").src = images.bag;
+  let images = teaImages[gameState.selectedTea];
+  if (!images) {
+    return;
+  }
+
+  const box = document.getElementById("tea-box-img");
+  const bag = document.getElementById("tea-bag-image");
+
+  if (box) {
+    box.src = images.box;
+  }
+  if (bag) {
+    bag.src = images.bag;
   }
 }
 
@@ -37,59 +158,53 @@ function advanceStep(nextStep, delay = 500) {
   setTimeout(() => goToStep(nextStep), delay);
 }
 
-function handleStartGame() {
-  let btn = document.querySelector("#lets-make-it-btn");
-  if (!btn) {
-    return;
-  }
-  
-  btn.addEventListener("click", () => {
-    document.querySelector("#tea-making").classList.remove("hidden");
-  });
-}
-
 function handleTeaSelection() {
-  let buttons = document.querySelectorAll(".tea-select-btn");
-  if (buttons.length == 0) {
-    return;
-  }
-
-  buttons.forEach(btn => {
-    btn.addEventListener("click", (element) => {
-      gameState.selectedTea = element.target.getAttribute("data-tea");
+  document.querySelectorAll(".tea-select-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      gameState.selectedTea = btn.dataset.tea;
       updateTeaImages();
-      
-      document.querySelector("#tea-selection-overlay").classList.add("hidden");
+
+      const overlay = document.getElementById("tea-selection-overlay");
+      if (overlay) {
+        overlay.classList.add("hidden");
+      }
+
       goToStep(1);
-      
       initStep1();
       initStep2();
       initStep3();
-      initStep4();
       initStep5();
     });
   });
 }
 
 function initStep1() {
-  let box = document.querySelector("#tea-box");
+  const box = document.getElementById("tea-box");
   if (!box) {
     return;
   }
 
   box.addEventListener("click", () => {
-    box.classList.add("opened");
-    
     let images = teaImages[gameState.selectedTea];
-    document.querySelector("#tea-box-img").src = images.boxOpen;
-    
+    let boxImg = document.getElementById("tea-box-img");
+    if (boxImg && images) {
+      boxImg.src = images.boxOpen;
+    }
     advanceStep(2);
-  });
+  }, { once: true });
 }
 
+// ========================================
+// DRAG & DROP
+// ========================================
+
 function setupDragDrop(source, target, onDrop) {
-  source.addEventListener("dragstart", (element) => {
-    element.dataTransfer.effectAllowed = "move";
+  if (!source || !target) {
+    return;
+  }
+
+  source.addEventListener("dragstart", event => {
+    event.dataTransfer.effectAllowed = "move";
     source.classList.add("dragging");
   });
 
@@ -97,9 +212,9 @@ function setupDragDrop(source, target, onDrop) {
     source.classList.remove("dragging");
   });
 
-  target.addEventListener("dragover", (element) => {
-    element.preventDefault();
-    element.dataTransfer.dropEffect = "move";
+  target.addEventListener("dragover", event => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
     target.style.opacity = "0.7";
   });
 
@@ -107,185 +222,232 @@ function setupDragDrop(source, target, onDrop) {
     target.style.opacity = "1";
   });
 
-  target.addEventListener("drop", (element) => {
-    element.preventDefault();
+  target.addEventListener("drop", event => {
+    event.preventDefault();
     target.style.opacity = "1";
     onDrop();
   });
 }
 
 function initStep2() {
-  let teaBag = document.querySelector(".tea-bag-img");
-  let cup = document.querySelector("#tea-cup-drop");
-  if (!teaBag || !cup) {
-    return;
-  }
+  const teaBag = document.getElementById("tea-bag-image");
+  const cup = document.getElementById("tea-cup-drop");
 
-  let onTeaBagDropped = () => {
+  setupDragDrop(teaBag, cup, () => {
     gameState.teaBagInCup = true;
     teaBag.style.display = "none";
-    
-    let images = teaImages[gameState.selectedTea];
-    cup.src = images.mug;
-    
+
+    const images = teaImages[gameState.selectedTea];
+    if (images) {
+      cup.src = images.mug;
+    }
+
     advanceStep(3);
-  };
-
-  setupDragDrop(teaBag, cup, onTeaBagDropped);
-
-  let nextBtn = document.querySelector("#step2-next");
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => goToStep(3));
-  }
+  });
 }
 
 function initStep3() {
-  let kettle = document.querySelector("#kettle-fill");
-  let fillBar = document.querySelector("#kettle-fill-bar");
-  if (!kettle || !fillBar) {
-    return;
-  }
+  const kettle = document.getElementById("kettle-fill");
+  const fillBar = document.getElementById("kettle-fill-bar");
+  if (!kettle || !fillBar) return;
 
   let fillPercentage = 0;
   let isMouseDown = false;
+  let fillInterval = null;
 
-  kettle.addEventListener("mousedown", () => {
+  const startFilling = () => {
     isMouseDown = true;
     kettle.classList.add("filling");
-  });
 
-  document.addEventListener("mouseup", () => {
-    isMouseDown = false;
-    kettle.classList.remove("filling");
-    if (fillPercentage < 15) {
-      fillPercentage = 0;
-      fillBar.style.width = "0%";
+    if (fillInterval) {
+      return;
     }
-  });
 
-  let fillInterval = setInterval(() => {
-    if (isMouseDown && fillPercentage < 100) {
-      fillPercentage += 2;
-      fillBar.style.width = fillPercentage + "%";
-      
+    fillInterval = setInterval(() => {
+      if (!isMouseDown) {
+        return;
+      }
+
+      fillPercentage += 3;
+      fillBar.style.width = Math.min(fillPercentage, 100) + "%";
+
       if (fillPercentage >= 100) {
-        gameState.kettleFilled = true;
         clearInterval(fillInterval);
+        fillInterval = null;
+        gameState.kettleFilled = true;
         goToStep(4);
         startBoilTimer();
       }
-    }
-  }, 50);
+    }, 50);
+  };
 
-  let nextBtn = document.querySelector("#step3-next");
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      clearInterval(fillInterval);
-      goToStep(4);
-      startBoilTimer();
-    });
-  }
+  const stopFilling = () => {
+    isMouseDown = false;
+    kettle.classList.remove("filling");
+  };
+
+  kettle.addEventListener("mousedown", startFilling);
+  kettle.addEventListener("touchstart", event => {
+    event.preventDefault();
+    startFilling();
+  });
+
+  document.addEventListener("mouseup", stopFilling);
+  document.addEventListener("touchend", stopFilling);
 }
 
 function startBoilTimer() {
-  let display = document.querySelector("#timer-display");
-  let circle = document.querySelector("#boil-timer");
-  let step4 = document.querySelector("#step-4");
-  if (!display || !circle || !step4) {
+  const display = document.getElementById("timer-display");
+  const circle = document.getElementById("boil-timer");
+  const stopBtn = document.getElementById("stop-timer-btn");
+  if (!display || !circle || !stopBtn) {
     return;
   }
 
-  let timeRemaining = 30;
-  const totalTime = 30;
+  let timeRemaining = 10;
+  let totalTime = 10;
+  let userStopped = false;
 
-  let nextBtn = document.querySelector("#step4-next");
-  if (!nextBtn) {
-    nextBtn = document.createElement("button");
-    nextBtn.id = "step4-next";
-    nextBtn.className = "step-btn next-btn hidden";
-    nextBtn.textContent = "Next";
-    step4.appendChild(nextBtn);
-  }
-
-  let timerInterval = setInterval(() => {
-    if (timeRemaining > 0) {
-      timeRemaining--;
-      let minutes = Math.floor(timeRemaining / 60);
-      let seconds = timeRemaining % 60;
-      display.textContent = `${minutes}:${seconds.toString().padStart(2, "0")}`;
-      
-      let progress = (totalTime - timeRemaining) / totalTime;
-      let degrees = progress * 360;
-      circle.style.background = `conic-gradient(#E8C4B8 0deg, #E8C4B8 ${degrees}deg, #F3D1D1 ${degrees}deg, #F3D1D1 360deg)`;
-    } else {
+  stopBtn.disabled = false;
+  stopBtn.addEventListener("click", () => {
+    if (!userStopped) {
+      userStopped = true;
+      gameState.stopTime = totalTime - timeRemaining;
+      if (gameState.stopTime !== 5) {
+        gameState.wrongTiming = true;
+      }
       clearInterval(timerInterval);
       display.textContent = "Done!";
-      circle.style.background = `conic-gradient(#E8C4B8 0deg, #E8C4B8 360deg)`;
+      circle.style.background = "conic-gradient(#E8C4B8 0deg, #E8C4B8 360deg)";
+      stopBtn.disabled = true;
       advanceStep(5);
     }
-  }, 1000);
-
-  nextBtn.addEventListener("click", () => {
-    clearInterval(timerInterval);
-    goToStep(5);
   });
+
+  const timerInterval = setInterval(() => {
+    timeRemaining--;
+    display.textContent = `0: ${String(timeRemaining).padStart(2, "0")}`;
+
+    let progress = (totalTime - timeRemaining) / totalTime;
+    let degrees = progress * 360;
+    circle.style.background = `conic-gradient(#E8C4B8 0deg, #E8C4B8 ${degrees}deg, #F3D1D1 ${degrees}deg, #F3D1D1 360deg)`;
+
+    if (timeRemaining <= 0) {
+      clearInterval(timerInterval);
+      display.textContent = "Over-cooked!";
+      circle.style.background = "conic-gradient(#D75A4A 0deg, #D75A4A 360deg)";
+      gameState.stopTime = 10;
+      gameState.wrongTiming = true;
+      stopBtn.disabled = true;
+      setTimeout(() => advanceStep(5), 1500);
+    }
+  }, 1000);
 }
 
-function initStep4() {
-}
+// ========================================
+// GAME COMPLETION & SCORING
+// ========================================
 
 function initStep5() {
-  let kettle = document.querySelector("#kettle-pour");
-  let cup = document.querySelector("#cup-fill-target");
-  if (!kettle || !cup) {
-    return;
-  }
+  const kettle = document.getElementById("kettle-pour");
+  const cup = document.getElementById("cup-fill-target");
 
-  let onKettleDropped = () => {
+  setupDragDrop(kettle, cup, () => {
     gameState.teaPoured = true;
     cup.style.borderColor = "#E6C6A3";
     cup.style.background = "rgba(232, 196, 184, 0.3)";
-    
+
     let images = teaImages[gameState.selectedTea];
-    cup.querySelector(".cup-fill-img").src = images.fullMug;
-    
-    advanceStep(6, 500);
-    setTimeout(() => completeTeaMaking(), 500);
-  };
+    const cupImg = cup.querySelector(".cup-fill-img");
+    if (cupImg && images) {
+      cupImg.src = images.fullMug;
+    }
 
-  setupDragDrop(kettle, cup, onKettleDropped);
-
-  let nextBtn = document.querySelector("#step5-next");
-  if (nextBtn) {
-    nextBtn.addEventListener("click", completeTeaMaking);
-  }
+    setTimeout(completeTeaMaking, 500);
+  });
 }
 
 function completeTeaMaking() {
-  let overlay = document.querySelector(".tea-overlay-content");
-  if (!overlay) {
+  const teaMakingElement = document.getElementById("tea-making");
+  if (!teaMakingElement) {
     return;
+  }
+
+  let isCorrect = false;
+  let teaPrice;
+  if (currentOrder) {
+    teaPrice = currentOrder.price;
+  } else {
+    teaPrice = 0;
+  }
+
+  if (currentOrder) {
+    const orderName = currentOrder.item.toLowerCase();
+    if (orderName.includes("green") && gameState.selectedTea === "green") {
+      isCorrect = true;
+    }
+    if (orderName.includes("strawberry") && gameState.selectedTea === "strawberry") {
+      isCorrect = true;
+    }
+
+    if (gameState.wrongTiming) {
+      isCorrect = false;
+      let randomValue = Math.random();
+      if (randomValue < 0.25) {
+        teaPrice = 0;
+      } else {
+        teaPrice = currentOrder.price / 2;
+      }
+    }
+  }
+
+  let result;
+  if (currentOrder) {
+    result = handleDrinkCompletion(isCorrect, teaPrice);
+  } else {
+    result = null;
   }
 
   let successMsg = document.createElement("div");
   successMsg.className = "tea-success-message";
-  successMsg.textContent = "Tea successfully prepared! 🍵";
-  overlay.appendChild(successMsg);
 
-  document.querySelector("#order-text").textContent = "Thank you! 🍵";
-  document.querySelector("#lets-make-it-btn").classList.add("hidden");
+  if (result) {
+    let coins = Math.round(result.earnedCoins * 100) / 100;
+    if (gameState.wrongTiming) {
+      if (teaPrice === 0) {
+        successMsg.textContent = `Wrong timing! +${coins} coins 🍵`;
+        successMsg.style.background = "#FF6B6B";
+      } else {
+        successMsg.textContent = `Good effort! +${coins} coins 🍵`;
+        successMsg.style.background = "#FF9800";
+      }
+    } else {
+      if (isCorrect) {
+        successMsg.textContent = `Perfect! +${coins} coins 🍵`;
+        successMsg.style.background = "#4CAF50";
+      } else {
+        successMsg.textContent = `Oops! +${coins} coins 🍵`;
+        successMsg.style.background = "#FF9800";
+      }
+    }
+  } else {
+    successMsg.textContent = "Tea successfully prepared! 🍵";
+    successMsg.style.background = "#4CAF50";
+  }
+
+  document.body.appendChild(successMsg);
 
   setTimeout(() => {
     successMsg.remove();
-    document.querySelector("#tea-making").classList.add("hidden");
-    
-    setTimeout(() => {
-      document.querySelector("#order-dialog").classList.add("hidden");
-      document.querySelector(".game-cat").classList.add("hidden");
-      resetTeaMaking();
-    }, 1500);
-  }, 2000);
+    teaMakingElement.remove();
+    resetTeaMaking();
+    showNextOrder();
+  }, 1800);
 }
+
+// ========================================
+// GAME RESET & INITIALIZATION
+// ========================================
 
 function resetTeaMaking() {
   gameState.currentStep = 0;
@@ -293,24 +455,22 @@ function resetTeaMaking() {
   gameState.teaBagInCup = false;
   gameState.kettleFilled = false;
   gameState.teaPoured = false;
+  gameState.wrongTiming = false;
+  gameState.stopTime = null;
+}
 
-  let teaBag = document.querySelector("#tea-bag-image");
-  if (teaBag) {
-    teaBag.style.display = "block";
+function startTeaGame() {
+  const gameContent = document.querySelector(".game-content");
+  if (!gameContent) {
+    console.log("ERROR: .game-content not found");
+    return;
   }
-  
-  document.querySelector("#kettle-fill-bar").style.width = "0%";
-  document.querySelector("#cup-fill-target").style.background = "rgba(243, 209, 209, 0.2)";
-  document.querySelectorAll(".step-btn.next-btn").forEach(btn => btn.classList.add("hidden"));
-}
 
-function initTeaGame() {
-  handleStartGame();
+  hide(document.getElementById("order-dialog"));
+  hide(document.querySelector(".game-cat"));
+  removeMiniGames();
+
+  resetTeaMaking();
+  createTeaGameHTML();
   handleTeaSelection();
-}
-
-if (document.readyState == "loading") {
-  document.addEventListener("DOMContentLoaded", initTeaGame);
-} else {
-  initTeaGame();
 }

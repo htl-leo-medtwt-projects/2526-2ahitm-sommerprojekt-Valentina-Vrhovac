@@ -1,140 +1,128 @@
 /* ============================================
-   ELEMENTS
+   MAIN UI
    ============================================ */
-const menuBtn = document.querySelector(".menu");
-const menuScreen = document.getElementById("menu-screen");
-const homeBtn = document.getElementById("home-btn");
-const settingsBtn = document.querySelector(".menu-panel .left-ui .ui-btn");
 
-const settingsScreen = document.getElementById("settings-screen");
-const settingsBg = document.querySelector(".settings-bg");
-const backSettingsBtn = document.querySelector(".back-settings");
-const resetBtn = document.querySelector(".reset-btn");
+document.addEventListener("DOMContentLoaded", () => {
+  const menuBtn = document.querySelector(".menu");
+  const menuScreen = document.getElementById("menu-screen");
+  const homeBtn = document.getElementById("home-btn");
+  const settingsBtn = document.getElementById("menu-settings-btn");
 
-const loadingScreen = document.getElementById("loading-screen");
-const openCafeBtn = document.getElementById("open-cafe-btn");
+  const settingsScreen = document.getElementById("settings-screen");
+  const backSettingsBtn = document.querySelector(".back-settings");
+  const resetBtn = document.querySelector(".reset-btn");
 
-const gameScreen = document.getElementById("game-screen");
-const gameSettingsBtn = gameScreen.querySelector(".left-ui .ui-btn:first-child");
-const gameHomeBtn = gameScreen.querySelector(".left-ui .ui-btn:last-child");
+  const loadingScreen = document.getElementById("loading-screen");
+  const openCafeBtn = document.getElementById("open-cafe-btn");
 
-let previousScreen = null;
+  const gameScreen = document.getElementById("game-screen");
+  const gameSettingsBtn = document.getElementById("game-settings-btn");
+  const gameHomeBtn = document.getElementById("game-home-btn");
 
+  let previousScreen = null;
 
-/* ============================================
-   MENU SCREEN
-   ============================================ */
-if (menuBtn) {
-  menuBtn.addEventListener("click", () => {
-    currentIndex = 0;
-    updateBook();
-    show(menuScreen);
-  });
-}
-
-if (menuScreen) {
-  menuScreen.addEventListener("click", (event) => {
-    if (event.target == menuScreen) {
-      hide(menuScreen);
-    }
-  });
-}
-
-if (homeBtn) {
-  homeBtn.addEventListener("click", () => {
-    hide(menuScreen);
-  });
-}
-
-if (settingsBtn) {
-  settingsBtn.addEventListener("click", (event) => {
-    event.stopPropagation();
-    previousScreen = "menu";
-    hide(menuScreen);
-    show(settingsScreen);
-  });
-}
-
-
-/* ============================================
-   SETTINGS SCREEN
-   ============================================ */
-if (settingsScreen) {
-  settingsScreen.addEventListener("click", (event) => {
-    if (event.target == settingsBg) {
-      hide(settingsScreen);
-    }
-  });
-}
-
-if (backSettingsBtn) {
-  backSettingsBtn.addEventListener("click", () => {
-    hide(settingsScreen);
-    if (previousScreen === "game") {
-      show(gameScreen);
-    } else if (previousScreen === "menu") {
+  if (menuBtn) {
+    menuBtn.addEventListener("click", () => {
+      currentIndex = 0;
+      updateBook();
       show(menuScreen);
-    }
-    previousScreen = null;
-  });
-}
+    });
+  }
 
-if (resetBtn) {
-  resetBtn.addEventListener("click", () => {
-    let musicSlider = document.querySelector(".music-slider");
-    let soundSlider = document.querySelector(".sound-slider");
-    let musicStrawberry = document.querySelector(".music-strawberry");
-    let soundStrawberry = document.querySelector(".sound-strawberry");
-    
-    if (musicSlider) musicSlider.value = 50;
-    if (soundSlider) soundSlider.value = 50;
-    
-    updateAllSliders();
-    if (musicStrawberry && musicSlider) updateStrawberryPosition(musicStrawberry, musicSlider);
-    if (soundStrawberry && soundSlider) updateStrawberryPosition(soundStrawberry, soundSlider);
-  });
-}
+  const menuBg = document.querySelector(".menu-bg");
+  if (menuBg) {
+    menuBg.addEventListener("click", () => hide(menuScreen));
+  }
 
-/* ============================================
-   GAME SCREEN
-   ============================================ */
-if (openCafeBtn) {
-  openCafeBtn.addEventListener("click", () => {
-    show(loadingScreen);
-    
-    setTimeout(() => {
-      hide(loadingScreen);
-      show(gameScreen);
-    }, 3000);
-  });
-}
+  if (homeBtn) {
+    homeBtn.addEventListener("click", () => hide(menuScreen));
+  }
 
-if (gameSettingsBtn) {
-  gameSettingsBtn.addEventListener("click", (event) => {
-    event.stopPropagation();
-    previousScreen = "game";
-    hide(gameScreen);
-    show(settingsScreen);
-  });
-}
+  if (settingsBtn) {
+    settingsBtn.addEventListener("click", () => {
+      previousScreen = "menu";
+      hide(menuScreen);
+      show(settingsScreen);
+    });
+  }
 
-if (gameHomeBtn) {
-  gameHomeBtn.addEventListener("click", () => {
-    hide(gameScreen);
-  });
-}
+  const settingsBg = document.querySelector(".settings-bg");
+  if (settingsBg) {
+    settingsBg.addEventListener("click", () => hide(settingsScreen));
+  }
 
-initMenuBook();
-initSliders();
-initStrawberries();
+  if (backSettingsBtn) {
+    backSettingsBtn.addEventListener("click", () => {
+      hide(settingsScreen);
 
-/* ============================================
-   AOS
-   ============================================ */
-if (typeof AOS !== 'undefined') {
-  AOS.init({
-    duration: 1000,
-    easing: 'ease-in-out',
-    once: false
-  });
-}
+      if (previousScreen === "game") {
+        show(gameScreen);
+      }
+      if (previousScreen === "menu") {
+        show(menuScreen);
+      }
+
+      previousScreen = null;
+    });
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      const musicSlider = document.querySelector(".music-slider");
+      const soundSlider = document.querySelector(".sound-slider");
+      const musicStrawberry = document.querySelector(".music-strawberry");
+      const soundStrawberry = document.querySelector(".sound-strawberry");
+
+      if (musicSlider) {
+        musicSlider.value = 50;
+      }
+      if (soundSlider) {
+        soundSlider.value = 50;
+      }
+
+      updateAllSliders();
+      updateStrawberryPosition(musicStrawberry, musicSlider);
+      updateStrawberryPosition(soundStrawberry, soundSlider);
+    });
+  }
+
+  if (openCafeBtn) {
+    openCafeBtn.addEventListener("click", () => {
+      show(loadingScreen);
+
+      setTimeout(() => {
+        hide(loadingScreen);
+        show(gameScreen);
+        removeMiniGames();
+        showNextOrder();
+      }, 1200);
+    });
+  }
+
+  if (gameSettingsBtn) {
+    gameSettingsBtn.addEventListener("click", () => {
+      previousScreen = "game";
+      hide(gameScreen);
+      show(settingsScreen);
+    });
+  }
+
+  if (gameHomeBtn) {
+    gameHomeBtn.addEventListener("click", () => {
+      removeMiniGames();
+      hide(gameScreen);
+    });
+  }
+
+  initMenuBook();
+  initSliders();
+  initStrawberries();
+
+  if (typeof AOS !== "undefined") {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-in-out",
+      once: false
+    });
+  }
+});

@@ -112,7 +112,7 @@ h6 {
   background-color: #EED3B5;
   padding: 1.25rem;
   border-radius: 1.25rem;
-  box-shadow: 0 0.625rem 1.5625rem rgba(0,0,0,0.08);
+  box-shadow: 0 0.625rem 1.5625rem rgba(0, 0, 0, 0.08);
 }
 
 .story-img {
@@ -258,7 +258,7 @@ h6 {
   padding: 1.5rem;
   background: #F8EFE6;
   border-radius: 1rem;
-  box-shadow: 0 1rem 3rem rgba(0,0,0,0.2);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
 }
 
 /* ============================================
@@ -325,7 +325,7 @@ h6 {
   margin-left: -3rem;
 }
 
-.right-ui .ui-badge:first-child img{
+.right-ui .ui-badge:first-child img {
   width: 3rem;
   margin-left: -1.8rem;
 }
@@ -368,7 +368,7 @@ h6 {
 }
 
 /* ============================================
-   SETTINGS SCREEN
+   SETTINGS
    ============================================ */
 
 .settings-container {
@@ -551,7 +551,7 @@ h6 {
 }
 
 .page-img:first-child {
-  border-right: 2px solid rgba(0,0,0,0.05);
+  border-right: 2px solid rgba(0, 0, 0, 0.05);
 }
 
 /* ============================================
@@ -572,7 +572,7 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .arrow.left {
@@ -601,7 +601,7 @@ h6 {
   background: #E8C4B8;
   color: white;
   cursor: pointer;
-  box-shadow: 0 0.4rem 0.9rem rgba(0,0,0,0.15);
+  box-shadow: 0 0.4rem 0.9rem rgba(0, 0, 0, 0.15);
 }
 
 /* ============================================
@@ -698,13 +698,14 @@ h6 {
   height: 100%;
   background: #FFFFFF;
   width: 0%;
-  animation: loadingAnimation 3s ease-out forwards;
+  animation: loadingAnimation 1.2s ease-out forwards;
 }
 
 @keyframes loadingAnimation {
   0% {
     width: 0%;
   }
+
   100% {
     width: 100%;
   }
@@ -751,11 +752,11 @@ h6 {
   margin-bottom: 8rem;
 }
 
-.game-top .left-ui{
+.game-top .left-ui {
   margin-left: 14.5rem;
 }
 
-.game-top .right-ui{
+.game-top .right-ui {
   margin-right: 14.5rem;
 }
 
@@ -875,7 +876,7 @@ h6 {
 }
 
 /* ============================================
-   TEA MAKING GAME - FULL OVERLAY
+   TEA MAKING GAME
    ============================================ */
 .tea-game-overlay {
   position: fixed;
@@ -895,7 +896,6 @@ h6 {
   border-radius: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 .tea-game-overlay.hidden {
@@ -910,8 +910,6 @@ h6 {
   box-shadow: none;
   width: 90%;
   max-width: 950px;
-  max-height: 90vh;
-  overflow-y: auto;
 }
 
 .tea-corner-select {
@@ -982,6 +980,316 @@ h6 {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* ============================================
+   MATCHA SELECTION
+   ============================================ */
+
+.matcha-selection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  justify-items: center;
+  margin-top: 2rem;
+}
+
+.matcha-overlay-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  background: rgba(255, 250, 239, 0.96);
+  border: 3px solid #E8D4CC;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  width: min(850px, 90vw);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.18);
+}
+
+.matcha-corner-select {
+  text-align: center;
+  background: transparent;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.matcha-option {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.matcha-glass-img {
+  width: 260px;
+  height: 320px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s;
+  filter: drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.2));
+}
+
+.matcha-glass-img:hover {
+  transform: scale(1.1);
+}
+
+.matcha-select-btn {
+  background: #E8C4B8;
+  color: #FFFAEF;
+  border: 2px solid #D4AF9E;
+  padding: 1rem 3rem;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.matcha-select-btn:hover {
+  background: #D4AF9E;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   MATCHA GAME
+   ============================================ */
+
+.matcha-working-area {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.matcha-powder-area {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+
+.matcha-powder-img {
+  width: 150px;
+  height: auto;
+  cursor: grab;
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.15));
+  background: transparent;
+}
+
+.matcha-bowl-area {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  align-items: center;
+}
+
+@keyframes matcha-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#matcha-cup-image.final-image {
+  animation: matcha-fade-in 0.8s ease-in-out forwards;
+}
+
+.matcha-water-fill-area {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.matcha-fill-progress-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  cursor: grab;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: transparent;
+}
+
+.matcha-fill-progress {
+  width: 250px;
+  height: 40px;
+  border: 3px solid #D4AF9E;
+  border-radius: 0.5rem;
+  background: transparent;
+  overflow: hidden;
+  position: relative;
+}
+
+.matcha-fill-line-50 {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: #D75A4A;
+  z-index: 2;
+}
+
+.matcha-fill-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #E8C4B8 0%, #D4B3A8 100%);
+  width: 0%;
+  transition: width 0.1s;
+}
+
+.matcha-fill-instruction {
+  color: #6B705C;
+  font-weight: bold;
+  margin: 0;
+}
+
+.matcha-filled-bowl-area {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+
+.matcha-bowl {
+  width: 200px;
+  height: auto;
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.15));
+  background: transparent;
+}
+
+.matcha-bowl-filled {
+  width: 200px;
+  height: auto;
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.15));
+  background: transparent;
+}
+
+.matcha-whisk-container {
+  display: flex;
+  gap: 0;
+  justify-content: center;
+  align-items: center;
+  min-height: 450px;
+}
+
+.matcha-bowl-whisk-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: grab;
+}
+
+.matcha-bowl-whisk {
+  width: 250px;
+  height: auto;
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.15));
+  z-index: 1;
+}
+
+.matcha-whisk-progress-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: -80px;
+  z-index: 2;
+}
+
+.matcha-whisk-img {
+  width: 100px;
+  height: auto;
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.15));
+  cursor: grab;
+}
+
+.matcha-whisk-progress-text {
+  color: #6B705C;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.matcha-syrup-selection {
+  display: flex;
+  gap: 4rem;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 300px;
+  margin-top: 1rem;
+}
+
+.matcha-syrup-option {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+}
+
+.matcha-syrup-bottle,
+.matcha-no-syrup-bottle {
+  width: 150px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s;
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.15));
+  background: transparent;
+}
+
+.matcha-syrup-bottle:hover,
+.matcha-no-syrup-bottle:hover {
+  transform: scale(1.1);
+}
+
+.matcha-milk-final-area {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.matcha-milk-final-section {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.matcha-cup-final-area {
+  display: flex;
+  justify-content: center;
+}
+
+.matcha-cup-final {
+  width: 200px;
+  height: auto;
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.15));
+}
+
+.matcha-milk-container {
+  display: flex;
+  justify-content: center;
+}
+
+.matcha-milk-img {
+  width: 200px;
+  height: auto;
+  cursor: grab;
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.15));
+  background: transparent;
+}
+
 .tea-steps {
   display: flow-root;
 }
@@ -1010,6 +1318,7 @@ h6 {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1234,6 +1543,49 @@ h6 {
 }
 
 .cup-fill-img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+/* ============================================
+   LEVEL UNLOCK ANIMATIONS
+   ============================================ */
+@keyframes level-unlock-glow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    transform: scale(1);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 1);
+    transform: scale(1.05);
+  }
+
+  100% {
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    transform: scale(1);
+  }
+}
+
+@keyframes unlock-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.cup-fill-img {
   width: 220px;
   height: 220px;
   object-fit: contain;
@@ -1256,8 +1608,197 @@ h6 {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+button.ui-btn {
+  cursor: pointer;
+  border: 5px solid #E6C6A3;
+}
+
+/* ============================================
+   MATCHA MINI GAME
+   ============================================ */
+.matcha-game-overlay {
+  position: fixed;
+  inset: 0;
+  background: url("images/wood2.png") center/cover;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.matcha-panel {
+  width: min(850px, 90vw);
+  min-height: 520px;
+  background: rgba(255, 250, 239, 0.96);
+  border: 3px solid #E8D4CC;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.18);
+  text-align: center;
+}
+
+.matcha-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.matcha-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.matcha-buttons button,
+#matcha-water-next {
+  background: #E8C4B8;
+  color: #FFFAEF;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+}
+
+#matcha-powder-scoop,
+#matcha-milk-jug {
+  cursor: grab;
+  width: 90px;
+  height: 90px;
+  background: #9BBF77;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+#matcha-milk-jug {
+  background: #FFFFFF;
+  border: 2px solid #E8D4CC;
+  color: #333;
+  font-size: 2rem;
+}
+
+#matcha-powder-bowl,
+#matcha-milk-target {
+  width: 160px;
+  height: 140px;
+  border: 3px dashed #C9A99E;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7A6B62;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+#matcha-powder-bowl.drag-over,
+#matcha-milk-target.drag-over {
+  background: #EAF4DE;
+}
+
+#matcha-water-container {
+  width: 180px;
+  height: 280px;
+  border: 3px solid #6B705C;
+  border-radius: 1rem;
+  position: relative;
+  background: #F4F4F4;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+#matcha-water-fill {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0%;
+  background: rgba(80, 160, 220, 0.55);
+  transition: height 0.08s;
+}
+
+#matcha-target-line {
+  position: absolute;
+  left: 0;
+  bottom: 75%;
+  width: 100%;
+  height: 3px;
+  background: #D75A4A;
+  z-index: 2;
+}
+
+#matcha-stir-area {
+  width: 260px;
+  height: 260px;
+  border: 4px dashed #9BBF77;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  background: #FAFAFA;
+  user-select: none;
+}
+
+.matcha-success-message,
+.tea-success-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  border-radius: 1rem;
+  color: white;
+  font-size: 1.2rem;
+  z-index: 500;
+  text-align: center;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+}
+
+.matcha-final-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  border-radius: 1rem;
+  background: #FFFAEF;
+  z-index: 500;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+}
+
+.matcha-steps {
+  display: flow-root;
+}
+
+.matcha-steps .step {
+  display: none;
+}
+
+.matcha-steps .step.hidden {
+  display: none;
+}
+
+.matcha-steps .step:not(.hidden) {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  background: rgba(255, 250, 239, 0.96);
+  border-radius: 1rem;
+  border: 3px solid #E8D4CC;
 }

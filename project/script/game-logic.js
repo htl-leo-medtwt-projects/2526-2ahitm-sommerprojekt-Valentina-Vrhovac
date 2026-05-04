@@ -92,7 +92,6 @@ function checkLevelUnlocks() {
     const requiredCoins = levelRequirements[levelId];
     if (playerCoins >= requiredCoins && !isLevelUnlocked(levelId)) {
       unlockedLevels.push(levelId);
-      // Show level unlock effect
       showLevelUnlockEffect(levelId);
     }
   }
@@ -103,10 +102,8 @@ function checkLevelUnlocks() {
 function showLevelUnlockEffect(levelId) {
   const levelBtn = document.querySelector(`[data-level="${levelId}"]`);
   if (levelBtn) {
-    // Add glow effect
     levelBtn.style.animation = "level-unlock-glow 0.6s ease-out";
 
-    // Create unlock notification
     const notification = document.createElement("div");
     notification.style.position = "fixed";
     notification.style.top = "50%";
