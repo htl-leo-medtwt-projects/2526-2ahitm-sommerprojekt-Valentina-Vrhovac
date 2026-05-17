@@ -1,7 +1,6 @@
 // ========================================
 // MATCHA GAME
 // ========================================
-
 const matchaGameState = {
   currentStep: 0,
   selectedGlass: null,
@@ -36,12 +35,12 @@ const matchaImages = {
 }
 
 // ========================================
-// MATCHA GAME 
+// START GAME/CONTENT
 // ========================================
 
 function createMatchaGameHTML() {
   const gameContent = document.querySelector(".game-content");
-  if (!gameContent){
+  if (!gameContent) {
     return;
   }
 
@@ -96,8 +95,8 @@ function createMatchaGameHTML() {
             <h3>Step 3: Whisk the Matcha</h3>
             <div class="matcha-whisk-container">
               <div class="matcha-whisk-area" id="matcha-whisk-area">
-                <img src="images/matchaBowl.png" alt="Bowl" class="matcha-bowl-whisk" style="width: 350px; margin-bottom: -60px; z-index: 1;">
-                <img src="images/matchaWhisk.png" alt="Whisk" class="matcha-whisk-img" style="width: 150px; cursor: grab; z-index: 2;">
+                <img src="images/matchaBowl.png" alt="Bowl" class="matcha-bowl-whisk" draggable="false" style="width: 350px; margin-bottom: -60px; z-index: 1;">
+                <img src="images/matchaWhisk.png" alt="Whisk" class="matcha-whisk-img" draggable="false" style="width: 150px; cursor: grab; z-index: 2;">
                 <p style="margin-top: 3rem;">Move your mouse in circles!</p>
                 <div class="matcha-whisk-progress-text"><strong id="matcha-whisk-progress">0%</strong></div>
               </div>
@@ -151,7 +150,6 @@ function createMatchaGameHTML() {
 // ========================================
 // MATCHA STEP MANAGEMENT
 // ========================================
-
 function showMatchaStep(stepNumber) {
   document.querySelectorAll(".matcha-steps .step").forEach(step => step.classList.add("hidden"));
   const step = document.getElementById("matcha-step-" + stepNumber);
@@ -180,10 +178,9 @@ function advanceMatchaStep(nextStep, delay = 500) {
 // ========================================
 // START MATCHA GAME
 // ========================================
-
 function startMatchaGame() {
   const gameContent = document.querySelector(".game-content");
-  if (!gameContent){
+  if (!gameContent) {
     return;
   }
 
@@ -212,12 +209,11 @@ function startMatchaGame() {
 // ========================================
 // MATCHA GLASS SELECTION
 // ========================================
-
 function handleMatchaSelection() {
   document.querySelectorAll(".matcha-select-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       matchaGameState.selectedGlass = btn.dataset.glass;
-      
+
       const overlay = document.getElementById("matcha-selection-overlay");
       if (overlay) {
         overlay.classList.add("hidden");
@@ -243,7 +239,6 @@ function handleMatchaSelection() {
 // ========================================
 // MATCHA STEP 1
 // ========================================
-
 function initMatchaStep1() {
   const powder = document.getElementById("matcha-powder");
   const bowl = document.getElementById("matcha-bowl-drop");
@@ -251,13 +246,13 @@ function initMatchaStep1() {
   setupDragDropMatcha(powder, bowl, () => {
     matchaGameState.powderAdded = true;
     powder.style.display = "none";
-    
+
     const filledBowlArea = document.getElementById("matcha-filled-bowl-area");
     if (filledBowlArea) {
       bowl.style.display = "none";
       filledBowlArea.classList.remove("hidden");
     }
-    
+
     advanceMatchaStep(2);
   });
 }
@@ -265,7 +260,6 @@ function initMatchaStep1() {
 // ========================================
 // MATCHA STEP 2
 // ========================================
-
 function initMatchaStep2() {
   const fillContainer = document.getElementById("matcha-fill-container");
   const fillBar = document.getElementById("matcha-kettle-fill-bar");
@@ -313,7 +307,6 @@ function initMatchaStep2() {
 // ========================================
 // MATCHA STEP 3
 // ========================================
-
 function initMatchaStep3() {
   const whiskArea = document.getElementById("matcha-whisk-area");
   if (!whiskArea) {
@@ -324,7 +317,13 @@ function initMatchaStep3() {
   let lastY = 0;
   let isWhisking = false;
 
+  whiskArea.querySelectorAll("img").forEach(img => {
+    img.setAttribute("draggable", "false");
+    img.addEventListener("dragstart", event => event.preventDefault());
+  });
+
   whiskArea.addEventListener("mousedown", event => {
+    event.preventDefault();
     isWhisking = true;
     lastX = event.offsetX;
     lastY = event.offsetY;
@@ -339,8 +338,8 @@ function initMatchaStep3() {
       return;
     }
 
-    const x = event.offsetX;
-    const y = event.offsetY;
+    let x = event.offsetX;
+    let y = event.offsetY;
 
     if (lastX === 0 && lastY === 0) {
       lastX = x;
@@ -348,7 +347,7 @@ function initMatchaStep3() {
       return;
     }
 
-    const distance = Math.sqrt((x - lastX) ** 2 + (y - lastY) ** 2);
+    let distance = Math.sqrt((x - lastX) ** 2 + (y - lastY) ** 2);
     matchaGameState.stirProgress = Math.min(100, matchaGameState.stirProgress + distance / 3);
     safeText("matcha-whisk-progress", Math.round(matchaGameState.stirProgress) + "%");
 
@@ -371,7 +370,6 @@ function initMatchaStep3() {
 // ========================================
 // MATCHA STEP 4
 // ========================================
-
 function initMatchaStep4() {
   const syrupYes = document.getElementById("matcha-syrup-yes");
   const syrupNo = document.getElementById("matcha-syrup-no");
@@ -394,7 +392,6 @@ function initMatchaStep4() {
 // ========================================
 // MATCHA STEP 5
 // ========================================
-
 function initMatchaStep5() {
   const milk = document.getElementById("matcha-milk-jug");
   const cupArea = document.getElementById("matcha-cup-drop");
@@ -403,14 +400,14 @@ function initMatchaStep5() {
   setupDragDropMatcha(milk, cupArea, () => {
     matchaGameState.milkAdded = true;
     milk.style.display = "none";
-    
+
     if (cupImage && matchaGameState.selectedGlass) {
       let milkImageSrc = matchaImages[matchaGameState.selectedGlass].withMilk;
       if (milkImageSrc) {
         cupImage.src = milkImageSrc;
       }
     }
-    
+
     let needsIce = matchaGameState.selectedGlass === "iced";
     if (needsIce) {
       advanceMatchaStep(6);
@@ -423,7 +420,6 @@ function initMatchaStep5() {
 // ========================================
 // MATCHA STEP 6
 // ========================================
-
 function initMatchaStep6() {
   const iceYes = document.getElementById("matcha-ice-yes");
   const iceNo = document.getElementById("matcha-ice-no");
@@ -443,12 +439,11 @@ function initMatchaStep6() {
   }
 }
 
-function attachMatchaListeners() {}
+function attachMatchaListeners() { }
 
 // ========================================
 // DRAG AND DROP
 // ========================================
-
 function setupDragDropMatcha(source, target, onDrop) {
   if (!source || !target) {
     return;
@@ -483,7 +478,6 @@ function setupDragDropMatcha(source, target, onDrop) {
 // ========================================
 // COMPLETE MATCHA MAKING
 // ========================================
-
 function completeMatchaMaking() {
   if (!currentOrder) {
     showNextOrder();
@@ -491,18 +485,7 @@ function completeMatchaMaking() {
   }
 
   let isCorrect = checkMatchaCompletion();
-  let drinkPrice = currentOrder.price;
-  
-  if (!isCorrect) {
-    const randomValue = Math.random();
-    if (randomValue < 0.25) {
-      drinkPrice = 0;
-    } else {
-      drinkPrice = currentOrder.price / 2;
-    }
-  }
-  
-  const result = handleDrinkCompletion(isCorrect, drinkPrice);
+  let result = handleDrinkCompletion(isCorrect, currentOrder.price);
 
   let finalImageSrc = "images/finalWarmMatcha.png";
   if (matchaGameState.selectedGlass === "iced") {
@@ -527,66 +510,32 @@ function completeMatchaMaking() {
     }
   }
 
-  const finalMsg = document.createElement("div");
-  finalMsg.className = "matcha-final-message";
-  finalMsg.style.display = "flex";
-  finalMsg.style.flexDirection = "column";
-  finalMsg.style.alignItems = "center";
-  finalMsg.style.gap = "2rem";
-  finalMsg.style.padding = "2rem";
-
-  const imgElement = document.createElement("img");
-  imgElement.src = finalImageSrc;
-  imgElement.style.width = "280px";
-  imgElement.style.height = "auto";
-  imgElement.style.filter = "drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))";
-  imgElement.classList.add("final-image");
-  
-  finalMsg.appendChild(imgElement);
-  document.body.appendChild(finalMsg);
+  let finalMsg = showFinalProduct(finalImageSrc);
 
   setTimeout(() => {
-    finalMsg.remove();
-    
-    const successMsg = document.createElement("div");
-    successMsg.className = "matcha-success-message";
-    successMsg.style.display = "flex";
-    successMsg.style.flexDirection = "column";
-    successMsg.style.alignItems = "center";
-    successMsg.style.gap = "1rem";
+    if (finalMsg) { finalMsg.remove(); }
 
-    let coins = Math.round(result.earnedCoins * 100) / 100;
-    let textElement = document.createElement("p");
+    let label;
+
     if (isCorrect) {
-      textElement.textContent = `Perfect! +${coins} coins 🍵`;
-      successMsg.style.background = "#4CAF50";
-    } else if (drinkPrice > 0) {
-      textElement.textContent = `Good! +${coins} coins 🍵`;
-      successMsg.style.background = "#FF9800";
+      label = "Perfect Matcha!";
     } else {
-      textElement.textContent = `Oops! +${coins} coins 🍵`;
-      successMsg.style.background = "#FF6B6B";
+      label = "Matcha Served!";
     }
-    textElement.style.margin = "0";
-    textElement.style.color = "white";
-    textElement.style.fontSize = "1.5rem";
-    textElement.style.fontWeight = "bold";
 
-    successMsg.appendChild(textElement);
-    document.body.appendChild(successMsg);
+    let msg = showRatingPopup(result, isCorrect, label, "🍵");
 
     setTimeout(() => {
-      successMsg.remove();
+      msg.remove();
       removeMiniGames();
       showNextOrder();
-    }, 1500);
-  }, 1500);
+    }, 1900);
+  }, 1200);
 }
 
 // ========================================
 // CHECK
 // ========================================
-
 function checkMatchaCompletion() {
   let orderName = currentOrder.item.toLowerCase();
 

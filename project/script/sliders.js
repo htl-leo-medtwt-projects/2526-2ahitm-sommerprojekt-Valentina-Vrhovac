@@ -20,6 +20,10 @@ function updateSliderBackground(slider) {
   slider.style.background = `linear-gradient(to right, #FFFFFF 0%, #FFFFFF ${percentage}%, #F3D1D1 ${percentage}%, #F3D1D1 100%)`;
 }
 
+// ========================================
+// HELPERS
+// ========================================
+
 function getSliderFromStrawberry(strawberry) {
   let track = strawberry.closest(".slider-track");
   if (track) {
@@ -49,6 +53,10 @@ function updateStrawberryPosition(strawberry, slider) {
   updateSliderBackground(slider);
 }
 
+// ========================================
+// SLIDER INITIALIZATION
+// ========================================
+
 function initSliders() {
   document.querySelectorAll(".slider").forEach(slider => {
     slider.addEventListener("input", updateAllSliders);
@@ -56,6 +64,10 @@ function initSliders() {
 
   updateAllSliders();
 }
+
+// ========================================
+// STRAWBERRY DRAG
+// ========================================
 
 function initStrawberries() {
   const strawberries = document.querySelectorAll(".strawberry-drag");

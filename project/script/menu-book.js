@@ -97,6 +97,10 @@ function addLevelImage(container, levelNum) {
   levelImg.src = `images/level${levelNum}.png`;
 }
 
+// ========================================
+// ANIMATION
+// ========================================
+
 function animatePageTurn() {
   let leftPage = document.getElementById("page-left");
   let rightPage = document.getElementById("page-right");
@@ -118,6 +122,10 @@ function animatePageTurn() {
     }
   }, 150);
 }
+
+// ========================================
+// INITIALIZATION
+// ========================================
 
 function initMenuBook() {
   let leftArrow = document.querySelector(".arrow.left");
