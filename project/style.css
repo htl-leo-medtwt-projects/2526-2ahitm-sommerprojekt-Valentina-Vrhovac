@@ -381,7 +381,7 @@ h6 {
 }
 
 .settings-container.hidden {
-  display: none;
+  display: none !important;
 }
 
 .settings-bg {
@@ -617,7 +617,7 @@ h6 {
 }
 
 .loading-container.hidden {
-  display: none;
+  display: none !important;
 }
 
 .loading-bg {
@@ -725,7 +725,7 @@ h6 {
 }
 
 .game-container.hidden {
-  display: none;
+  display: none !important;
 }
 
 .game-bg {
@@ -899,7 +899,7 @@ h6 {
 }
 
 .tea-game-overlay.hidden {
-  display: none;
+  display: none !important;
 }
 
 .tea-overlay-content {
@@ -1299,7 +1299,7 @@ h6 {
 }
 
 .tea-steps .step.hidden {
-  display: none;
+  display: none !important;
 }
 
 .tea-steps .step:not(.hidden) {
@@ -1360,7 +1360,7 @@ h6 {
 }
 
 .step-btn.hidden {
-  display: none;
+  display: none !important;
 }
 
 .tea-box {
@@ -1790,7 +1790,7 @@ button.ui-btn {
 }
 
 .matcha-steps .step.hidden {
-  display: none;
+  display: none !important;
 }
 
 .matcha-steps .step:not(.hidden) {
@@ -1919,8 +1919,8 @@ button.ui-btn {
 }
 
 #coffee-machine-img {
-  width: 15rem;
-  height: 15rem;
+  width: 14rem;
+  height: 14rem;
   object-fit: contain;
 }
 
@@ -2041,9 +2041,9 @@ button.ui-btn {
 }
 
 @keyframes levelPop {
-  0% { transform: scale(0.72) rotate(-4deg); }
-  60% { transform: scale(1.08) rotate(2deg); }
-  100% { transform: scale(1) rotate(0deg); }
+  0% { transform: translate(-50%, -50%) scale(0.72) rotate(-4deg); }
+  60% { transform: translate(-50%, -50%) scale(1.08) rotate(2deg); }
+  100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
 }
 
 @keyframes levelPulse {
@@ -2171,8 +2171,8 @@ button.ui-btn {
 }
 
 #coffee-machine-img {
-  width: 18rem;
-  height: 18rem;
+  width: 12rem;
+  height: 12rem;
   object-fit: contain;
   filter: drop-shadow(0 0.4rem 0.5rem rgba(0,0,0,0.15));
 }
@@ -2301,10 +2301,6 @@ button.ui-btn {
   color: #6B705C;
 }
 
-/* ============================================
-   MATCHA & FINAL PRODUCT DISPLAY
-   ============================================ */
-
 .matcha-final-message {
   position: fixed;
   inset: 0;
@@ -2321,10 +2317,6 @@ button.ui-btn {
   filter: drop-shadow(0 0.6rem 1rem rgba(0,0,0,0.22));
   animation: levelPop 0.45s ease forwards;
 }
-
-/* ============================================
-   RESPONSIVE DESIGN - TABLET & MOBILE
-   ============================================ */
 
 @media (max-width: 800px) {
   .cake-builder-area {
@@ -2602,6 +2594,12 @@ button.ui-btn {
 }
 
 .final-product-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
   width: 17rem;
   height: 17rem;
   display: flex;
@@ -2611,7 +2609,7 @@ button.ui-btn {
   border: 0.22rem solid #E6C6A3;
   border-radius: 2rem;
   box-shadow: 0 1rem 2.5rem rgba(0,0,0,0.22);
-  animation: levelPop 0.45s ease forwards;
+  z-index: 9901;
 }
 
 .final-product-card img {
@@ -2622,10 +2620,6 @@ button.ui-btn {
   object-fit: contain;
   filter: drop-shadow(0 0.5rem 0.7rem rgba(0,0,0,0.18));
 }
-
-/* ============================================
-   RESPONSIVE DESIGN - SHORT SCREENS (<760px height)
-   ============================================ */
 
 @media (max-height: 760px) {
   .picture-card {
@@ -2647,9 +2641,8 @@ button.ui-btn {
 }
 
 /* ============================================
-   COFFEE GAME CARD SIZING & RESPONSIVE
+   COFFEE GAME CARD SIZING
    ============================================ */
-
 .picture-card.coffee-card {
   height: min(40rem, 91vh);
   width: min(63rem, 94vw);
@@ -2666,10 +2659,6 @@ button.ui-btn {
   margin-bottom: 0.6rem;
 }
 
-/* ============================================
-   COFFEE GAME BUTTON STYLES
-   ============================================ */
-
 .coffee-fill-button {
   display: inline-flex;
   align-items: center;
@@ -2685,10 +2674,6 @@ button.ui-btn {
 .coffee-fill-button.hidden {
   display: none !important;
 }
-
-/* ============================================
-   COFFEE CARD LAYOUT & SIZING
-   ============================================ */
 
 .coffee-card .coffee-machine-picture {
   width: 19rem;
@@ -2707,9 +2692,8 @@ button.ui-btn {
 }
 
 /* ============================================
-   CAKE CARD LAYOUT & BUILDING SYSTEM
+   CAKE CARD LAYOUT
    ============================================ */
-
 .cake-card .mini-step:not(.hidden) {
   min-height: 24rem;
   max-height: 25.5rem;
@@ -2732,6 +2716,9 @@ button.ui-btn {
   overflow: hidden;
 }
 
+/* ============================================
+   MATCHA & FINAL
+   ============================================ */
 .matcha-final-message .final-image,
 .final-product-card img,
 #matcha-cup-image,
@@ -2766,6 +2753,9 @@ button.ui-btn {
   overflow: hidden;
 }
 
+/* ============================================
+   COFFEE GAME BUTTON
+   ============================================ */
 .picture-card.coffee-card {
   height: min(43rem, 94vh);
   width: min(66rem, 96vw);
@@ -2821,9 +2811,8 @@ button.ui-btn {
 }
 
 /* ============================================
-   COFFEE ICE/FINAL STEP STYLING
+   COFFEE ICE/FINAL STEP
    ============================================ */
-
 .coffee-ice-step {
   display: flex;
   flex-direction: column;
@@ -2851,9 +2840,8 @@ button.ui-btn {
 }
 
 /* ============================================
-   PICTURE CARD - CAKE CARD SIZING
+   PICTURE CARD 
    ============================================ */
-
 .picture-card.cake-card {
   width: min(66rem, 96vw);
   height: min(42rem, 94vh);
@@ -2936,9 +2924,8 @@ button.ui-btn {
 }
 
 /* ============================================
-   PICTURE GAME OVERLAY - ALL GAMES
+   PICTURE GAME OVERLAY
    ============================================ */
-
 .mini-game-overlay.pretty-mini-game.picture-game {
   position: fixed;
   inset: 0;
@@ -2950,13 +2937,21 @@ button.ui-btn {
   background: url("images/wood2.png") center/cover no-repeat;
 }
 
-/* Base styling for all picture game cards */
 .picture-card,
-.picture-card.coffee-card,
 .picture-card.cake-card,
 .picture-card.toast-card {
   width: min(58rem, 92vw);
   height: min(34rem, 82vh);
+  min-height: 0;
+  max-height: none;
+  overflow: hidden;
+  padding: 1rem 1.35rem;
+  box-sizing: border-box;
+}
+
+.picture-card.coffee-card {
+  width: min(62rem, 94vw);
+  height: min(38rem, 88vh);
   min-height: 0;
   max-height: none;
   overflow: hidden;
@@ -2985,7 +2980,6 @@ button.ui-btn {
 }
 
 .picture-card .mini-step:not(.hidden),
-.coffee-card .mini-step:not(.hidden),
 .cake-card .mini-step:not(.hidden),
 .toast-card .mini-step:not(.hidden) {
   min-height: 24.5rem;
@@ -2998,9 +2992,16 @@ button.ui-btn {
   box-sizing: border-box;
 }
 
-/* ============================================
-   IMAGE CHOICE BUTTONS - ALL GAMES
-   ============================================ */
+.coffee-card .mini-step:not(.hidden) {
+  min-height: 25rem;
+  height: 25rem;
+  max-height: 25rem;
+  overflow: hidden;
+  padding: 0.85rem 1.05rem;
+  gap: 0.6rem;
+  justify-content: center;
+  box-sizing: border-box;
+}
 
 .image-choice-row {
   gap: 0.9rem;
@@ -3012,40 +3013,35 @@ button.ui-btn {
   max-width: 9.5rem;
   min-height: 9.5rem;
   padding: 0.25rem;
-  cursor: pointer;
 }
 
 .image-choice img {
   width: 6.6rem;
   height: 6.6rem;
   object-fit: contain;
-  filter: drop-shadow(0 0.25rem 0.35rem rgba(0,0,0,0.12));
 }
 
 .image-choice span {
   font-size: 0.82rem;
   line-height: 1.05;
-  font-weight: 700;
-  color: #6B705C;
 }
 
 /* ============================================
    COFFEE MACHINE STEP & SCENES
    ============================================ */
-
 .coffee-machine-step,
 .coffee-card .coffee-scene {
-  min-height: 19.2rem;
-  height: 19.2rem;
-  max-height: 19.2rem;
-  padding: 0.2rem 0 3.2rem 0;
+  min-height: 19rem;
+  height: 19rem;
+  max-height: 19rem;
+  padding: 0.5rem 0 2.5rem 0;
   gap: 2rem;
   box-sizing: border-box;
 }
 
 .coffee-card .coffee-machine-picture {
-  width: 13.5rem;
-  height: 13.5rem;
+  width: 9rem;
+  height: 9rem;
   object-fit: contain;
 }
 
@@ -3056,7 +3052,7 @@ button.ui-btn {
 }
 
 .coffee-fill-button {
-  bottom: 0.25rem;
+  bottom: 0.5rem;
   height: 2.8rem;
   min-width: 11.5rem;
   padding: 0.45rem 1.2rem;
@@ -3111,6 +3107,9 @@ button.ui-btn {
   padding: 0.65rem 1.1rem;
 }
 
+/* ============================================
+   CAKE CUP LAYER BUILDING AREA
+   ============================================ */
 .cake-picture-builder {
   grid-template-columns: 1fr 1.05fr;
   gap: 1.3rem;
@@ -3160,6 +3159,9 @@ button.ui-btn {
   padding: 0.25rem 0.6rem;
 }
 
+/* ============================================
+   TOAST INTERACTION AREA
+   ============================================ */
 .toast-picture-area {
   width: 20rem;
   height: 13.5rem;
@@ -3178,6 +3180,9 @@ button.ui-btn {
   bottom: 0.7rem;
 }
 
+/* ============================================
+   FINAL PRODUCT DISPLAY
+   ============================================ */
 .final-product-popup {
   position: fixed;
   inset: 0;
@@ -3190,11 +3195,16 @@ button.ui-btn {
 }
 
 .final-product-card {
-  width: min(15rem, 48vw);
-  height: min(15rem, 48vw);
-  max-width: 15rem;
-  max-height: 15rem;
-  overflow: hidden;
+  width: 18rem;
+  height: 18rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 250, 239, 0.86);
+  border: 0.22rem solid #E6C6A3;
+  border-radius: 2rem;
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.22);
+  flex-shrink: 0;
 }
 
 .final-product-card img,
@@ -3206,7 +3216,7 @@ button.ui-btn {
   max-width: 12.2rem;
   max-height: 12.2rem;
   object-fit: contain;
-  display: block;
+  margin: auto;
 }
 
 .matcha-final-message,
@@ -3249,6 +3259,10 @@ button.ui-btn {
     max-height: 15.6rem;
   }
 }
+
+/* ============================================
+   PICTURE CARD COMPACT SIZE
+   ============================================ */
 
 .mini-game-overlay.pretty-mini-game.picture-game {
   align-items: center;
@@ -3431,6 +3445,10 @@ button.ui-btn {
   }
 }
 
+
+/* ============================================
+   CENTERED CARDS
+   ============================================ */
 .mini-game-overlay.pretty-mini-game.picture-game {
   align-items: center;
   justify-content: center;
@@ -3888,6 +3906,10 @@ button.ui-btn {
   }
 }
 
+
+/* ============================================
+   COFFEE BUTTON / MATCHA DRAG / SYRUP SIZES
+   ============================================ */
 .coffee-machine-step,
 .coffee-card .coffee-scene {
   padding-bottom: 3.15rem;
@@ -4003,6 +4025,7 @@ img[src*="strawberrySirup.png"] {
   align-items: center;
   justify-content: center;
 }
+
 .image-choice img[src*="Sirup.png"],
 .image-choice img[src*="syrup.png"],
 .image-choice img[src*="strawberrySirup.png"],
@@ -4054,4 +4077,96 @@ img[src*="noSirup.png"],
 .stir-picture-area img,
 .matcha-whisk-container img {
   pointer-events: none;
+}
+
+.hidden,
+.coffee-fill-button.hidden,
+.settings-container.hidden,
+.loading-container.hidden,
+.game-container.hidden,
+.tea-game-overlay.hidden,
+.matcha-steps .step.hidden,
+.tea-steps .step.hidden,
+.step-btn.hidden {
+  display: none !important;
+}
+
+.image-choice img[src*="Sirup.png"],
+.image-choice img[src*="syrup.png"],
+img[src*="strawberrySirup.png"],
+img[src*="velvetSirup.png"],
+img[src*="noSirup.png"],
+#matcha-syrup-yes,
+#matcha-syrup-no {
+  width: 10.5rem;
+  max-width: 10.5rem;
+  height: 12rem;
+  max-height: 12rem;
+  object-fit: contain;
+}
+
+#coffee-step-4 .image-choice {
+  min-width: 11.5rem;
+  min-height: 14.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#coffee-stir-area,
+#coffee-stir-area *,
+#matcha-whisk-area,
+#matcha-whisk-area *,
+.stir-picture-area,
+.stir-picture-area *,
+.matcha-whisk-container,
+.matcha-whisk-container * {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-drag: none;
+  touch-action: none;
+}
+
+#coffee-stir-area img,
+#matcha-whisk-area img,
+.stir-picture-area img,
+.matcha-whisk-container img {
+  pointer-events: none;
+}
+
+#matcha-step-5,
+#matcha-step-5 .matcha-milk-final-area,
+#matcha-step-5 .matcha-milk-final-section,
+#matcha-step-5 .matcha-milk-container,
+#matcha-step-5 .matcha-cup-final-area,
+#matcha-step-5 #matcha-cup-drop {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+#tea-cup-drop,
+#cup-fill-target,
+#cup-fill-target .cup-fill-img,
+#tea-cup-drop.tea-cup,
+.tea-cup,
+.cup-fill-img {
+  width: 13.75rem;
+  height: 13.75rem;
+  max-width: 13.75rem;
+  max-height: 13.75rem;
+  object-fit: contain;
+}
+
+.tea-cup-area,
+.tea-cup-fill {
+  width: 15rem;
+  height: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -14,6 +14,7 @@ let playerCoins = 0;
 let unlockedLevels = [1];
 let currentOrder = null;
 let currentGameType = null;
+const guestImages = ["images/cat.png", "images/bunny.png", "images/bear.png", "images/dog.png"];
 
 function initializeGame() {
   loadCoins();
@@ -69,11 +70,11 @@ function loadUnlockedLevels() {
 
   try {
     const parsed = JSON.parse(saved);
-    if (Array.isArray(parsed)) {
-      unlockedLevels = parsed;
-    } else {
-      unlockedLevels = [1];
-    }
+  if (Array.isArray(parsed)) {
+    unlockedLevels = parsed;
+  } else {
+    unlockedLevels = [1];
+  }
   } catch {
     unlockedLevels = [1];
   }
@@ -89,7 +90,7 @@ function isLevelUnlocked(levelId) {
 
 function checkLevelUnlocks() {
   for (let levelId = 1; levelId <= 5; levelId++) {
-    const requiredCoins = levelRequirements[levelId];
+    let requiredCoins = levelRequirements[levelId];
     if (playerCoins >= requiredCoins && !isLevelUnlocked(levelId)) {
       unlockedLevels.push(levelId);
       showLevelUnlockEffect(levelId);
@@ -100,32 +101,26 @@ function checkLevelUnlocks() {
 }
 
 function showLevelUnlockEffect(levelId) {
-  const levelBtn = document.querySelector(`[data-level="${levelId}"]`);
-  if (levelBtn) {
-    levelBtn.style.animation = "level-unlock-glow 0.6s ease-out";
+  const old = document.querySelector(".level-up-popup");
+  if (old) old.remove();
 
-    const notification = document.createElement("div");
-    notification.style.position = "fixed";
-    notification.style.top = "50%";
-    notification.style.left = "50%";
-    notification.style.transform = "translate(-50%, -50%)";
-    notification.style.background = "linear-gradient(135deg, #FFD700, #FFA500)";
-    notification.style.color = "white";
-    notification.style.padding = "2rem 3rem";
-    notification.style.borderRadius = "15px";
-    notification.style.fontSize = "1.8rem";
-    notification.style.fontWeight = "bold";
-    notification.style.zIndex = "9999";
-    notification.style.boxShadow = "0 8px 16px rgba(0, 0, 0, 0.3)";
-    notification.style.animation = "unlock-pop 0.5s ease-out";
-    notification.textContent = `🌟 Level ${levelId} Unlocked! 🌟`;
+  const notification = document.createElement("div");
+  notification.className = "level-up-popup";
+  notification.innerHTML = `
+    <div class="level-up-inner">
+      <div class="level-up-sparkles">✦ ✨ ✦</div>
+      <img src="images/level${levelId}.png" alt="Level ${levelId}">
+      <h2>LEVEL UP!</h2>
+      <p>Level ${levelId} unlocked</p>
+    </div>
+  `;
+  document.body.appendChild(notification);
 
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-      notification.remove();
-    }, 2000);
-  }
+  setTimeout(() => notification.classList.add("show"), 20);
+  setTimeout(() => {
+    notification.classList.remove("show");
+    setTimeout(() => notification.remove(), 300);
+  }, 2800);
 }
 
 function getCurrentLevel() {
@@ -150,7 +145,7 @@ function updateCoinDisplay() {
 }
 
 function updateLevelDisplay() {
-  const currentLevel = getCurrentLevel();
+  let currentLevel = getCurrentLevel();
 
   const menuLevelText = document.getElementById("menu-level-text");
   const gameLevelText = document.getElementById("game-level-text");
@@ -200,15 +195,15 @@ function getAvailableOrders() {
   }
 
   return orders.filter(order => {
-    const itemLevel = getItemLevel(order.itemId);
-    const gameType = getItemGameType(order.itemId);
+    let itemLevel = getItemLevel(order.itemId);
+    let gameType = getItemGameType(order.itemId);
 
-    return isLevelUnlocked(itemLevel) && (gameType === "tea" || gameType === "matcha");
+    return isLevelUnlocked(itemLevel) && gameType !== "locked";
   });
 }
 
 function getRandomOrder() {
-  const availableOrders = getAvailableOrders();
+  let availableOrders = getAvailableOrders();
   if (availableOrders.length === 0) {
     return null;
   }
@@ -223,6 +218,10 @@ function showNextOrder() {
   const btn = document.getElementById("lets-make-it-btn");
 
   show(catImg);
+  if (catImg) {
+    let guest = guestImages[Math.floor(Math.random() * guestImages.length)];
+    catImg.src = guest;
+  }
   show(orderDialog);
   show(btn);
 
@@ -247,8 +246,13 @@ function startGame() {
     startTeaGame();
   } else if (currentGameType === "matcha") {
     startMatchaGame();
+  } else if (currentGameType === "coffee") {
+    startCoffeeGame();
+  } else if (currentGameType === "cake") {
+    startCakeGame();
+  } else if (currentGameType === "toast") {
+    startToastGame();
   } else {
-    alert("This order is not playable yet.");
     showNextOrder();
   }
 }
@@ -292,20 +296,205 @@ function resetProgress() {
 }
 
 function removeMiniGames() {
-  const teaGame = document.getElementById("tea-making");
-  const matchaGame = document.getElementById("matcha-game-container");
-  if (teaGame) {
-    teaGame.remove();
-  }
-  if (matchaGame) {
-    matchaGame.remove();
-  }
+  const ids = ["tea-making", "matcha-game-container", "coffee-game-container", "cake-game-container", "toast-game-container"];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   initializeGame();
 
   const makeBtn = document.getElementById("lets-make-it-btn");
+  if (makeBtn) {
+    makeBtn.addEventListener("click", startGame);
+  }
+
+  showNextOrder();
+});
+
+function setupSimpleDrop(sourceId, targetId, onDrop) {
+  const source = document.getElementById(sourceId);
+  const target = document.getElementById(targetId);
+
+  if (!source || !target) {
+    return;
+  }
+
+  source.addEventListener("dragstart", event => {
+    event.dataTransfer.effectAllowed = "move";
+    event.dataTransfer.setData("text/plain", sourceId);
+    source.classList.add("dragging");
+  });
+
+  source.addEventListener("dragend", () => {
+    source.classList.remove("dragging");
+  });
+
+  target.addEventListener("dragover", event => {
+    event.preventDefault();
+    target.classList.add("drop-hover");
+  });
+
+  target.addEventListener("dragleave", () => {
+    target.classList.remove("drop-hover");
+  });
+
+  target.addEventListener("drop", event => {
+    event.preventDefault();
+    target.classList.remove("drop-hover");
+    onDrop();
+  });
+}
+
+function showRatingPopup(result, isCorrect, label, emoji = "🍓") {
+  let coins = Math.round(result.earnedCoins * 100) / 100;
+  const msg = document.createElement("div");
+  msg.className = "mini-success-message pretty-rating-message";
+
+  let ratingText;
+  if (isCorrect) {
+    ratingText = "Perfect!";
+  } else {
+    if (coins > 0) {
+      ratingText = "Good try!";
+    } else {
+      ratingText = "Oops!";
+    }
+  }
+
+  let subText;
+  if (isCorrect) {
+    subText = "Order completed";
+  } else {
+    if (coins > 0) {
+      subText = "Half coins earned";
+    } else {
+      subText = "No coins earned";
+    }
+  }
+
+  msg.innerHTML = `
+    <div class="rating-sparkles">✦ ${emoji} ✦</div>
+    <strong>${ratingText}</strong>
+    <span>${label}</span>
+    <p>${subText}</p>
+    <div class="rating-coins">+${coins} coins</div>
+  `;
+
+  document.body.appendChild(msg);
+  return msg;
+}
+
+function setImageWithFallback(img, sources) {
+  if (!img) {
+    return;
+  }
+
+  let list;
+
+  if (Array.isArray(sources)) {
+    list = sources.filter(Boolean);
+  } else {
+    list = [sources].filter(Boolean);
+  }
+
+  if (list.length === 0) {
+    return;
+  }
+
+  let index = 0;
+
+  img.onerror = () => {
+    index += 1;
+
+    if (index < list.length) {
+      img.src = list[index];
+    }
+  };
+
+  img.src = list[0];
+}
+
+function showFinalProduct(finalImageSrc) {
+  if (!finalImageSrc) {
+    return null;
+  }
+
+  let sources;
+
+  if (Array.isArray(finalImageSrc)) {
+    sources = finalImageSrc.filter(Boolean);
+  } else {
+    sources = [finalImageSrc];
+  }
+
+  if (sources.length === 0) {
+    return null;
+  }
+
+  const finalMsg = document.createElement("div");
+  finalMsg.className = "final-product-popup";
+
+  finalMsg.innerHTML = `
+    <div class="final-product-card">
+      <img src="${sources[0]}" alt="Finished product">
+    </div>
+  `;
+
+  const img = finalMsg.querySelector("img");
+  let fallbackIndex = 1;
+
+  img.addEventListener("error", () => {
+    if (fallbackIndex < sources.length) {
+      img.src = sources[fallbackIndex];
+      fallbackIndex++;
+    }
+  });
+
+  document.body.appendChild(finalMsg);
+  return finalMsg;
+}
+
+function finishMiniGame(isCorrect, price, containerId, label, emoji = "🍓", finalImageSrc = null) {
+  let result = handleDrinkCompletion(isCorrect, price);
+  let finalMsg = showFinalProduct(finalImageSrc);
+
+  let delay;
+
+  if (finalImageSrc) {
+    delay = 900;
+  } else {
+    delay = 0;
+  }
+
+  setTimeout(() => {
+    if (finalMsg) {
+      finalMsg.remove();
+    }
+
+    let msg = showRatingPopup(result, isCorrect, label, emoji);
+
+    setTimeout(() => {
+      msg.remove();
+
+      const container = document.getElementById(containerId);
+
+      if (container) {
+        container.remove();
+      }
+
+      showNextOrder();
+    }, 1900);
+  }, delay);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initializeGame();
+
+  const makeBtn = document.getElementById("lets-make-it-btn");
+
   if (makeBtn) {
     makeBtn.addEventListener("click", startGame);
   }

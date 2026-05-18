@@ -204,12 +204,7 @@ function startCoffeeGame() {
 // ========================================
 
 function showCoffeeStep(num) {
-  const steps = document.querySelectorAll("#coffee-game-container .mini-step");
-
-  for (let i = 0; i < steps.length; i++) {
-    steps[i].classList.add("hidden");
-  }
-
+  document.querySelectorAll("#coffee-game-container .mini-step").forEach(el => el.classList.add("hidden"));
   show(document.getElementById("coffee-step-" + num));
 }
 
