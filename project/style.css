@@ -245,7 +245,7 @@ h6 {
 .menu-bg {
   position: absolute;
   inset: 0;
-  background: url("images/wood.png") center/cover;
+  background: url("images/wood4.png") center/cover;
   filter: blur(1.5px);
   z-index: 0;
 }
@@ -387,7 +387,7 @@ h6 {
 .settings-bg {
   position: absolute;
   inset: 0;
-  background: url("images/wood.png");
+  background: url("images/wood4.png");
   background-size: cover;
   background-attachment: fixed;
   filter: blur(1.5px);
@@ -623,7 +623,7 @@ h6 {
 .loading-bg {
   position: absolute;
   inset: 0;
-  background: url("images/wood.png");
+  background: url("images/wood4.png");
   background-size: cover;
   background-attachment: fixed;
   filter: blur(1.5px);
@@ -886,7 +886,7 @@ h6 {
   height: 100%;
   max-width: 100%;
   margin: 0;
-  background: url('images/wood2.png');
+  background: url('images/wood3.png');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -1626,7 +1626,7 @@ button.ui-btn {
 .matcha-game-overlay {
   position: fixed;
   inset: 0;
-  background: url("images/wood2.png") center/cover;
+  background: url("images/wood3.png") center/cover;
   z-index: 200;
   display: flex;
   align-items: center;
@@ -2061,7 +2061,7 @@ button.ui-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url("images/wood2.png") center/cover no-repeat;
+  background: url("images/wood3.png") center/cover no-repeat;
   backdrop-filter: none;
 }
 
@@ -2934,7 +2934,7 @@ button.ui-btn {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: url("images/wood2.png") center/cover no-repeat;
+  background: url("images/wood3.png") center/cover no-repeat;
 }
 
 .picture-card,
