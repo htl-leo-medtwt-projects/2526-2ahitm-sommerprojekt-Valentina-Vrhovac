@@ -246,7 +246,7 @@ h6 {
   position: absolute;
   inset: 0;
   background: url("images/wood4.png") center/cover;
-  filter: blur(1.5px);
+  filter: blur(0.5px);
   z-index: 0;
 }
 
@@ -390,7 +390,7 @@ h6 {
   background: url("images/wood4.png");
   background-size: cover;
   background-attachment: fixed;
-  filter: blur(1.5px);
+  filter: blur(0.5px);
 }
 
 .settings-panel {
@@ -626,7 +626,7 @@ h6 {
   background: url("images/wood4.png");
   background-size: cover;
   background-attachment: fixed;
-  filter: blur(1.5px);
+  filter: blur(0.5px);
 }
 
 .loading-panel {
