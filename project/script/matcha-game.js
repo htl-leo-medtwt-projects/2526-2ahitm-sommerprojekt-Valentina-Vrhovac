@@ -212,6 +212,7 @@ function startMatchaGame() {
 function handleMatchaSelection() {
   document.querySelectorAll(".matcha-select-btn").forEach(btn => {
     btn.addEventListener("click", () => {
+      playSound("button");
       matchaGameState.selectedGlass = btn.dataset.glass;
 
       const overlay = document.getElementById("matcha-selection-overlay");
@@ -244,6 +245,7 @@ function initMatchaStep1() {
   const bowl = document.getElementById("matcha-bowl-drop");
 
   setupDragDropMatcha(powder, bowl, () => {
+    playSound("matchaScoop");
     matchaGameState.powderAdded = true;
     powder.style.display = "none";
 
@@ -272,6 +274,7 @@ function initMatchaStep2() {
   let fillInterval = null;
 
   const startFilling = () => {
+    playSound("pourWater", { volume: 0.45 });
     isMouseDown = true;
 
     if (fillInterval) {
@@ -323,6 +326,7 @@ function initMatchaStep3() {
   });
 
   whiskArea.addEventListener("mousedown", event => {
+    playSound("matchaWhisk", { volume: 0.65 });
     event.preventDefault();
     isWhisking = true;
     lastX = event.offsetX;
@@ -376,6 +380,7 @@ function initMatchaStep4() {
 
   if (syrupYes) {
     syrupYes.addEventListener("click", () => {
+      playSound("syrupPour");
       matchaGameState.syrupSelected = "yes";
       advanceMatchaStep(5);
     }, { once: true });
@@ -383,6 +388,7 @@ function initMatchaStep4() {
 
   if (syrupNo) {
     syrupNo.addEventListener("click", () => {
+      playSound("button");
       matchaGameState.syrupSelected = "no";
       advanceMatchaStep(5);
     }, { once: true });
@@ -398,6 +404,7 @@ function initMatchaStep5() {
   const cupImage = document.getElementById("matcha-cup-image");
 
   setupDragDropMatcha(milk, cupArea, () => {
+    playSound("milkPour");
     matchaGameState.milkAdded = true;
     milk.style.display = "none";
 
@@ -426,6 +433,7 @@ function initMatchaStep6() {
 
   if (iceYes) {
     iceYes.addEventListener("click", () => {
+      playSound("iceDrop");
       matchaGameState.iceAdded = true;
       completeMatchaMaking();
     }, { once: true });
@@ -433,6 +441,7 @@ function initMatchaStep6() {
 
   if (iceNo) {
     iceNo.addEventListener("click", () => {
+      playSound("button");
       matchaGameState.iceAdded = false;
       completeMatchaMaking();
     }, { once: true });
@@ -450,6 +459,7 @@ function setupDragDropMatcha(source, target, onDrop) {
   }
 
   source.addEventListener("dragstart", event => {
+    playSound("dragPickup");
     event.dataTransfer.effectAllowed = "move";
     source.classList.add("dragging");
   });
@@ -471,6 +481,7 @@ function setupDragDropMatcha(source, target, onDrop) {
   target.addEventListener("drop", event => {
     event.preventDefault();
     target.style.opacity = "1";
+    playSound("dragDrop");
     onDrop();
   });
 }

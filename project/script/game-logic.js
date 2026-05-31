@@ -46,11 +46,16 @@ function saveCoins() {
 }
 
 function addCoins(amount) {
-  playerCoins += Number(amount) || 0;
+  const gained = Number(amount) || 0;
+  playerCoins += gained;
   playerCoins = Math.round(playerCoins * 100) / 100;
   saveCoins();
   checkLevelUnlocks();
   updateCoinDisplay();
+
+  if (gained > 0) {
+    playSound("coins");
+  }
 }
 
 function getCoins() {
@@ -101,6 +106,8 @@ function checkLevelUnlocks() {
 }
 
 function showLevelUnlockEffect(levelId) {
+  playSound("levelUnlock");
+
   const old = document.querySelector(".level-up-popup");
   if (old) old.remove();
 
@@ -212,6 +219,7 @@ function getRandomOrder() {
 
 function showNextOrder() {
   removeMiniGames();
+  playSound("guestEnter", { volume: 0.55 });
 
   const catImg = document.querySelector(".game-cat");
   const orderDialog = document.getElementById("order-dialog");
@@ -235,9 +243,11 @@ function showNextOrder() {
 
   currentGameType = getItemGameType(currentOrder.itemId);
   safeText("order-text", currentOrder.text);
+  playSound("order", { volume: 0.6 });
 }
 
 function startGame() {
+  playSound("button");
   if (!currentOrder) {
     showNextOrder();
   }
@@ -323,6 +333,7 @@ function setupSimpleDrop(sourceId, targetId, onDrop) {
   }
 
   source.addEventListener("dragstart", event => {
+    playSound("dragPickup");
     event.dataTransfer.effectAllowed = "move";
     event.dataTransfer.setData("text/plain", sourceId);
     source.classList.add("dragging");
@@ -344,6 +355,7 @@ function setupSimpleDrop(sourceId, targetId, onDrop) {
   target.addEventListener("drop", event => {
     event.preventDefault();
     target.classList.remove("drop-hover");
+    playSound("dragDrop");
     onDrop();
   });
 }
@@ -384,6 +396,15 @@ function showRatingPopup(result, isCorrect, label, emoji = "🍓") {
   `;
 
   document.body.appendChild(msg);
+
+  if (isCorrect) {
+    playSound("ratingPerfect");
+  } else if (coins > 0) {
+    playSound("ratingGood");
+  } else {
+    playSound("ratingWrong");
+  }
+
   return msg;
 }
 
@@ -458,6 +479,7 @@ function showFinalProduct(finalImageSrc) {
 }
 
 function finishMiniGame(isCorrect, price, containerId, label, emoji = "🍓", finalImageSrc = null) {
+  playSound("complete");
   let result = handleDrinkCompletion(isCorrect, price);
   let finalMsg = showFinalProduct(finalImageSrc);
 
@@ -489,15 +511,3 @@ function finishMiniGame(isCorrect, price, containerId, label, emoji = "🍓", fi
     }, 1900);
   }, delay);
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  initializeGame();
-
-  const makeBtn = document.getElementById("lets-make-it-btn");
-
-  if (makeBtn) {
-    makeBtn.addEventListener("click", startGame);
-  }
-
-  showNextOrder();
-});

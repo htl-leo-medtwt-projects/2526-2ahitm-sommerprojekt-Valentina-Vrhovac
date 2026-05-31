@@ -170,6 +170,7 @@ function handleTeaSelection() {
   document.querySelectorAll(".tea-select-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       gameState.selectedTea = btn.dataset.tea;
+      playSound("button");
       updateTeaImages();
 
       const overlay = document.getElementById("tea-selection-overlay");
@@ -193,6 +194,7 @@ function initStep1() {
   }
 
   box.addEventListener("click", () => {
+    playSound("button");
     let images = teaImages[gameState.selectedTea];
     let boxImg = document.getElementById("tea-box-img");
     if (boxImg && images) {
@@ -208,6 +210,7 @@ function setupDragDrop(source, target, onDrop) {
   }
 
   source.addEventListener("dragstart", event => {
+    playSound("dragPickup");
     event.dataTransfer.effectAllowed = "move";
     source.classList.add("dragging");
   });
@@ -229,6 +232,7 @@ function setupDragDrop(source, target, onDrop) {
   target.addEventListener("drop", event => {
     event.preventDefault();
     target.style.opacity = "1";
+    playSound("dragDrop");
     onDrop();
   });
 }
@@ -238,6 +242,7 @@ function initStep2() {
   const cup = document.getElementById("tea-cup-drop");
 
   setupDragDrop(teaBag, cup, () => {
+    playSound("teaBag");
     gameState.teaBagInCup = true;
     teaBag.style.display = "none";
 
@@ -260,6 +265,7 @@ function initStep3() {
   let fillInterval = null;
 
   const startFilling = () => {
+    playSound("pourWater", { volume: 0.5 });
     isMouseDown = true;
     kettle.classList.add("filling");
 
@@ -314,6 +320,7 @@ function startBoilTimer() {
 
   stopBtn.disabled = false;
   stopBtn.addEventListener("click", () => {
+    playSound("button");
     if (!userStopped) {
       userStopped = true;
       gameState.stopTime = totalTime - timeRemaining;
@@ -353,6 +360,7 @@ function initStep5() {
   const cup = document.getElementById("cup-fill-target");
 
   setupDragDrop(kettle, cup, () => {
+    playSound("pourWater");
     gameState.teaPoured = true;
     cup.style.borderColor = "#E6C6A3";
     cup.style.background = "rgba(232, 196, 184, 0.3)";

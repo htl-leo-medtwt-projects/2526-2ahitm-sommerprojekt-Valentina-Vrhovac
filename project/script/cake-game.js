@@ -111,6 +111,7 @@ function showCakeStep(num) {
 function attachCakeEvents() {
   document.querySelectorAll("#cake-step-1 [data-cream]").forEach(btn => {
     btn.addEventListener("click", () => {
+      playSound("button");
       cakeState.cream = btn.dataset.cream;
       buildCakeLayerChoices();
       showCakeStep(2);
@@ -119,6 +120,7 @@ function attachCakeEvents() {
 
   document.querySelectorAll("#cake-step-3 [data-topping]").forEach(btn => {
     btn.addEventListener("click", () => {
+      playSound("topping");
       cakeState.topping = btn.dataset.topping;
       completeCakeMaking();
     });
@@ -151,7 +153,10 @@ function buildCakeLayerChoices() {
     card.src = layer.img;
     card.alt = layer.label;
     source.appendChild(card);
-    card.addEventListener("dragstart", e => e.dataTransfer.setData("text/plain", card.id));
+    card.addEventListener("dragstart", e => {
+      playSound("dragPickup");
+      e.dataTransfer.setData("text/plain", card.id);
+    });
   });
 
   target.addEventListener("dragover", e => {
@@ -161,6 +166,7 @@ function buildCakeLayerChoices() {
   target.addEventListener("dragleave", () => target.classList.remove("picture-hover"));
   target.addEventListener("drop", e => {
     e.preventDefault();
+    playSound("dragDrop");
     target.classList.remove("picture-hover");
     const id = e.dataTransfer.getData("text/plain");
     const card = document.getElementById(id);

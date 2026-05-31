@@ -58,8 +58,35 @@ function updateStrawberryPosition(strawberry, slider) {
 // ========================================
 
 function initSliders() {
+  const musicSlider = document.querySelector(".music-slider");
+  const soundSlider = document.querySelector(".sound-slider");
+
+  if (musicSlider && typeof SoundDesign !== "undefined") {
+    musicSlider.value = SoundDesign.getMusicVolumePercent();
+  }
+
+  if (soundSlider && typeof SoundDesign !== "undefined") {
+    soundSlider.value = SoundDesign.getSoundVolumePercent();
+  }
+
   document.querySelectorAll(".slider").forEach(slider => {
-    slider.addEventListener("input", updateAllSliders);
+    slider.addEventListener("input", () => {
+      const strawberry = slider.closest(".slider-track")?.querySelector(".strawberry-drag");
+      updateStrawberryPosition(strawberry, slider);
+      updateAllSliders();
+
+      if (typeof SoundDesign !== "undefined") {
+        if (slider.classList.contains("music-slider")) {
+          SoundDesign.setMusicVolume(Number(slider.value) / 100);
+          SoundDesign.startMusic();
+        }
+
+        if (slider.classList.contains("sound-slider")) {
+          SoundDesign.setSoundVolume(Number(slider.value) / 100);
+          playSound("button", { volume: 0.35 });
+        }
+      }
+    });
   });
 
   updateAllSliders();
@@ -79,6 +106,7 @@ function initStrawberries() {
     strawberry.addEventListener("mousedown", event => {
       draggedStrawberry = strawberry;
       strawberry.classList.add("dragging");
+      playSound("dragPickup", { volume: 0.45 });
       event.preventDefault();
     });
   });
@@ -101,6 +129,16 @@ function initStrawberries() {
     let percentage = (mouseX / trackRect.width) * 100;
     slider.value = Math.round(percentage);
 
+    if (typeof SoundDesign !== "undefined") {
+      if (slider.classList.contains("music-slider")) {
+        SoundDesign.setMusicVolume(Number(slider.value) / 100);
+      }
+
+      if (slider.classList.contains("sound-slider")) {
+        SoundDesign.setSoundVolume(Number(slider.value) / 100);
+      }
+    }
+
     updateAllSliders();
     updateStrawberryPosition(draggedStrawberry, slider);
   });
@@ -110,6 +148,7 @@ function initStrawberries() {
       return;
     }
     draggedStrawberry.classList.remove("dragging");
+    playSound("dragDrop", { volume: 0.35 });
     draggedStrawberry = null;
   });
 

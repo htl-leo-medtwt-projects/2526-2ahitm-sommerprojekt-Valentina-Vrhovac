@@ -170,6 +170,7 @@ function showToastStep(num) {
 function attachToastEvents() {
   document.querySelectorAll("#toast-step-1 [data-cream]").forEach(btn => {
     btn.addEventListener("click", () => {
+      playSound("button");
       toastState.cream = btn.dataset.cream;
       showToastStep(2);
     });
@@ -181,7 +182,10 @@ function attachToastEvents() {
     img.setAttribute("draggable", "false");
     img.addEventListener("dragstart", event => event.preventDefault());
   });
-  toastArea.addEventListener("mousedown", event => event.preventDefault());
+  toastArea.addEventListener("mousedown", event => {
+    playSound("creamSpread", { volume: 0.65 });
+    event.preventDefault();
+  });
 
   let progress = 0;
   toastArea.addEventListener("mousemove", event => {
@@ -197,6 +201,7 @@ function attachToastEvents() {
 
   document.querySelectorAll("#toast-step-3 [data-fruit]").forEach(btn => {
     btn.addEventListener("click", () => {
+      playSound("fruitPlace");
       toastState.fruitTopping = btn.dataset.fruit;
       setImageWithFallback(document.getElementById("toast-img"), toastFruitOnlyImagesFromChoices());
       showToastStep(4);
@@ -205,6 +210,7 @@ function attachToastEvents() {
 
   document.querySelectorAll("#toast-step-4 [data-extra]").forEach(btn => {
     btn.addEventListener("click", () => {
+      playSound(btn.dataset.extra === "drizzle" ? "syrupPour" : "topping");
       toastState.secondTopping = btn.dataset.extra;
       setImageWithFallback(document.getElementById("toast-img"), toastFinalImageFromChoices());
       completeToastMaking();

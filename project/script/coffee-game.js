@@ -219,6 +219,7 @@ function attachCoffeeEvents() {
     let btn = cupButtons[i];
 
     btn.addEventListener("click", function () {
+      playSound("button");
       coffeeState.selectedCup = btn.dataset.cup;
       document.getElementById("coffee-cup-drag").src = coffeeImageForStage("empty");
       showCoffeeStep(2);
@@ -229,6 +230,7 @@ function attachCoffeeEvents() {
   const machineScene = document.querySelector(".coffee-scene");
 
   cup.addEventListener("dragstart", function (event) {
+    playSound("dragPickup");
     event.dataTransfer.effectAllowed = "move";
     event.dataTransfer.setData("text/plain", "coffee-cup-drag");
     cup.classList.add("dragging");
@@ -249,6 +251,7 @@ function attachCoffeeEvents() {
 
   machineScene.addEventListener("drop", function (event) {
     event.preventDefault();
+    playSound("dragDrop");
     machineScene.classList.remove("picture-hover");
 
     coffeeState.cupPlaced = true;
@@ -267,6 +270,7 @@ function attachCoffeeEvents() {
   });
 
   document.getElementById("coffee-fill-btn").addEventListener("click", function () {
+    playSound("coffeePour");
     coffeeState.coffeeFilled = true;
 
     let fillImg;
@@ -309,6 +313,7 @@ function attachCoffeeEvents() {
     let btn = syrupButtons[i];
 
     btn.addEventListener("click", function () {
+      playSound(btn.dataset.syrup === "none" ? "button" : "syrupPour");
       coffeeState.syrupSelected = btn.dataset.syrup;
 
       const stirDrink = document.getElementById("coffee-stir-drink");
@@ -335,6 +340,7 @@ function attachCoffeeEvents() {
   }
 
   stirArea.addEventListener("mousedown", function (event) {
+    playSound("stir", { volume: 0.65 });
     event.preventDefault();
   });
 
@@ -374,6 +380,7 @@ function attachCoffeeEvents() {
     let btn = iceButtons[i];
 
     btn.addEventListener("click", function () {
+      playSound(btn.dataset.ice === "yes" ? "iceDrop" : "button");
       coffeeState.iceAdded = btn.dataset.ice === "yes";
       completeCoffeeMaking();
     });
@@ -392,6 +399,7 @@ function setupPictureDrop(sourceId, targetId, onDrop) {
   }
 
   source.addEventListener("dragstart", event => {
+    playSound("dragPickup");
     event.dataTransfer.effectAllowed = "move";
     event.dataTransfer.setData("text/plain", sourceId);
     source.classList.add("dragging");
@@ -405,6 +413,7 @@ function setupPictureDrop(sourceId, targetId, onDrop) {
   target.addEventListener("drop", event => {
     event.preventDefault();
     target.classList.remove("picture-hover");
+    playSound("milkPour");
     onDrop();
   });
 }

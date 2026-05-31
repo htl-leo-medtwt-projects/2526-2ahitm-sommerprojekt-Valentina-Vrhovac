@@ -3,6 +3,10 @@
    ============================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (typeof SoundDesign !== "undefined") {
+    SoundDesign.prepareAutostart();
+  }
+
   const menuBtn = document.querySelector(".menu");
   const menuScreen = document.getElementById("menu-screen");
   const homeBtn = document.getElementById("home-btn");
@@ -21,34 +25,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let previousScreen = null;
 
+  document.addEventListener("click", event => {
+    const clickable = event.target.closest("button, .menu, .image-choice, .tea-select-btn, .page-img, .arrow");
+    if (clickable) {
+      playSound("button", { volume: 0.45 });
+    }
+  });
+
   if (menuBtn) {
     menuBtn.addEventListener("click", () => {
       currentIndex = 0;
       updateBook();
+      playSound("menuOpen");
       show(menuScreen);
     });
   }
 
   const menuBg = document.querySelector(".menu-bg");
   if (menuBg) {
-    menuBg.addEventListener("click", () => hide(menuScreen));
+    menuBg.addEventListener("click", () => {
+      playSound("menuClose");
+      hide(menuScreen);
+    });
   }
 
   if (homeBtn) {
-    homeBtn.addEventListener("click", () => hide(menuScreen));
+    homeBtn.addEventListener("click", () => {
+      playSound("menuClose");
+      hide(menuScreen);
+    });
   }
 
   if (settingsBtn) {
     settingsBtn.addEventListener("click", () => {
       previousScreen = "menu";
       hide(menuScreen);
+      playSound("popup");
       show(settingsScreen);
     });
   }
 
   const settingsBg = document.querySelector(".settings-bg");
   if (settingsBg) {
-    settingsBg.addEventListener("click", () => hide(settingsScreen));
+    settingsBg.addEventListener("click", () => {
+      playSound("menuClose");
+      hide(settingsScreen);
+    });
   }
 
   if (backSettingsBtn) {
@@ -83,11 +105,19 @@ document.addEventListener("DOMContentLoaded", () => {
       updateAllSliders();
       updateStrawberryPosition(musicStrawberry, musicSlider);
       updateStrawberryPosition(soundStrawberry, soundSlider);
+
+      if (typeof SoundDesign !== "undefined") {
+        SoundDesign.setMusicVolume(0.5);
+        SoundDesign.setSoundVolume(0.5);
+        SoundDesign.startMusic();
+      }
     });
   }
 
   if (openCafeBtn) {
     openCafeBtn.addEventListener("click", () => {
+      startBackgroundMusic();
+      playSound("menuOpen");
       show(loadingScreen);
 
       setTimeout(() => {
@@ -103,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
     gameSettingsBtn.addEventListener("click", () => {
       previousScreen = "game";
       hide(gameScreen);
+      playSound("popup");
       show(settingsScreen);
     });
   }
@@ -110,6 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (gameHomeBtn) {
     gameHomeBtn.addEventListener("click", () => {
       removeMiniGames();
+      playSound("guestLeave");
       hide(gameScreen);
     });
   }
