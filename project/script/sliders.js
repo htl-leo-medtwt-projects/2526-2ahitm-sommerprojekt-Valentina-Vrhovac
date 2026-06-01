@@ -43,13 +43,15 @@ function updateStrawberryPosition(strawberry, slider) {
     return;
   }
 
-  let trackWidth = track.offsetWidth;
-  let sliderValue = Number(slider.value);
-  let position = (sliderValue / 100) * trackWidth;
-  let strawberryWidth = strawberry.offsetWidth || 24;
-  position -= strawberryWidth / 2;
+  let minValue = Number(slider.min);
+  let maxValue = Number(slider.max);
+  let currentValue = Number(slider.value);
 
-  strawberry.style.left = position + "px";
+  let percentage = ((currentValue - minValue) / (maxValue - minValue)) * 100;
+
+  strawberry.style.left = percentage + "%";
+  strawberry.style.transform = "translateX(-50%)";
+
   updateSliderBackground(slider);
 }
 
