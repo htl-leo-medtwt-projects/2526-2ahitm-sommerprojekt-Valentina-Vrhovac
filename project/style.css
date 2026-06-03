@@ -1990,12 +1990,10 @@ button.ui-btn {
    ============================================ */
 .level-up-popup {
   position: fixed;
-  inset: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 12000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 250, 239, 0.65);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -2015,7 +2013,7 @@ button.ui-btn {
   color: #5D3E2E;
   box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
   transform: scale(0.72);
-  animation: levelPop 0.55s ease forwards;
+  animation: levelUnlockPop 0.55s ease forwards;
 }
 
 .level-up-inner img {
@@ -2040,6 +2038,20 @@ button.ui-btn {
 .level-up-sparkles {
   font-size: 2rem;
   margin-bottom: 0.5rem;
+}
+
+@keyframes levelUnlockPop {
+  0% {
+    transform: scale(0.72) rotate(-4deg);
+  }
+
+  60% {
+    transform: scale(1.08) rotate(2deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 @keyframes levelPop {
